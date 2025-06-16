@@ -1,0 +1,41 @@
+# === React (Node.js) ===
+node_modules/
+dist/
+*.log
+*.local
+
+# === Django (Python) ===
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.db
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+*.env
+.env
+.venv/
+venv/
+env/
+
+# === .NET ===
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+
+# === Editor/OS ===
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.user
+*.sw?
+*.bak
