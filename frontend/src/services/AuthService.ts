@@ -2,9 +2,15 @@ import { userApi } from "./interceptors";
 import type { User } from "../models/user";
 
 export class AuthService {
-  static async login(username: string, password: string): Promise<{ access: string; refresh: string; user: User }> {
+  static async login(
+    username: string,
+    password: string
+  ): Promise<{ access: string; refresh: string; user: User }> {
     try {
-      const response = await userApi.post("users/login/", { username, password });
+      const response = await userApi.post("users/login/", {
+        username,
+        password,
+      });
 
       localStorage.setItem("access_token", response.data.access);
       localStorage.setItem("refresh_token", response.data.refresh);
