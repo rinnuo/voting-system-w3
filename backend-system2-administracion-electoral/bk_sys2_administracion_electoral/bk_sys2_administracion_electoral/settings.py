@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-e3cz28-$+ry)$=ijrlwb6htq)4tr*lo32sk^%yg(mxvmx1l8l+'
+SECRET_KEY = 'django-insecure-cwir7qawsz$x5=-n*=2i)xh_28&-hn#x*d(^^dzrddgd&lyuse'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -32,14 +32,15 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'corsheaders',
+    'corsheaders', # Middleware for handling CORS
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',  # Django REST Framework
-    'Recinto'
+    'rest_framework_simplejwt',
+    'electoral' # Custom application for managing electoral precincts
 ]
 
 MIDDLEWARE = [
@@ -114,6 +115,38 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+
+#NUEVAS INTEGRACIONES por Mateo Quinteros ;3 -----------------
+from datetime import timedelta
+
+from datetime import timedelta
+from django.conf import settings
+SIMPLE_JWT = {
+    'SIGNING_KEY': settings.SECRET_KEY,
+    'ALGORITHM': 'HS256',
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+
+    # Esto hace que no intente cargar el user desde la BD
+    'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
+}
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:5173",
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'electoral.authentication.ExternalJWTAuthentication',
+    ),
+    # Por defecto dejamos cualquier permiso para GET; tu ViewSet se encarga del resto.
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
+}
+
 
 
 # Static files (CSS, JavaScript, Images)
