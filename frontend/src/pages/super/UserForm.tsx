@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import type { User } from "../../models/user";
 import { UserService } from "../../services/UserService";
+import PageContainer from "../../components/PageContainer";
+import Form from "../../components/Form";
+import Button from "../../components/Button";
 
 const initialState: Omit<User, "role"> & { role: User["role"]; password?: string } = {
   username: "",
@@ -49,7 +52,6 @@ const UserForm = () => {
       } else {
         await UserService.create(form as Omit<User, "id"> & { password: string });
         setSuccess("Usuario creado correctamente.");
-        setForm(initialState);
       }
       setTimeout(() => navigate("/users/list"), 1000);
     } catch {
@@ -60,88 +62,104 @@ const UserForm = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 bg-white p-6 rounded shadow">
-      <h1 className="text-2xl font-bold mb-4">{id ? "Editar Usuario" : "Crear Usuario"}</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Usuario</label>
-          <input
-            name="username"
-            value={form.username}
-            onChange={handleChange}
-            required
-            className="mt-1 w-full rounded border border-gray-300 px-3 py-2"
-          />
-        </div>
-        {!id && (
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Contraseña</label>
-            <input
-              name="password"
-              type="password"
-              value={form.password || ""}
-              onChange={handleChange}
-              required
-              className="mt-1 w-full rounded border border-gray-300 px-3 py-2"
-            />
-          </div>
-        )}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Nombre</label>
-          <input
-            name="first_name"
-            value={form.first_name}
-            onChange={handleChange}
-            required
-            className="mt-1 w-full rounded border border-gray-300 px-3 py-2"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Apellido</label>
-          <input
-            name="last_name"
-            value={form.last_name}
-            onChange={handleChange}
-            required
-            className="mt-1 w-full rounded border border-gray-300 px-3 py-2"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Email</label>
-          <input
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            className="mt-1 w-full rounded border border-gray-300 px-3 py-2"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Rol</label>
-          <select
-            name="role"
-            value={form.role}
-            onChange={handleChange}
-            className="mt-1 w-full rounded border border-gray-300 px-3 py-2"
-          >
-            <option value="SUPER">SUPER</option>
-            <option value="PADRON">PADRON</option>
-            <option value="ELECCION">ELECCION</option>
-            <option value="JURADO">JURADO</option>
-          </select>
-        </div>
-        {error && <div className="text-red-600">{error}</div>}
-        {success && <div className="text-green-600">{success}</div>}
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full rounded bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700 disabled:opacity-60"
-        >
-          {loading ? "Guardando..." : "Guardar"}
-        </button>
-      </form>
-    </div>
+    <PageContainer
+      title={id ? "Editar Usuario" : "Crear Usuario"}
+      left={
+        <Form
+          onSubmit={handleSubmit}
+          error={error}
+          success={success}
+          loading={loading}
+          fields={
+            <>
+              <div>
+                <label className="block text-sm font-medium text-gray-200">Usuario</label>
+                <input
+                  name="username"
+                  value={form.username}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
+                />
+              </div>
+              {!id && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-200">Contraseña</label>
+                  <input
+                    name="password"
+                    type="password"
+                    value={form.password || ""}
+                    onChange={handleChange}
+                    required
+                    className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
+                  />
+                </div>
+              )}
+              <div>
+                <label className="block text-sm font-medium text-gray-200">Nombre</label>
+                <input
+                  name="first_name"
+                  value={form.first_name}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-200">Apellido</label>
+                <input
+                  name="last_name"
+                  value={form.last_name}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-200">Email</label>
+                <input
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-200">Rol</label>
+                <select
+                  name="role"
+                  value={form.role}
+                  onChange={handleChange}
+                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
+                >
+                  <option value="SUPER">SUPER</option>
+                  <option value="PADRON">PADRON</option>
+                  <option value="ELECCION">ELECCION</option>
+                  <option value="JURADO">JURADO</option>
+                </select>
+              </div>
+            </>
+          }
+          actions={
+            <Button
+              type="submit"
+              variant="success"
+              disabled={loading}
+              className="w-full"
+            >
+              {loading
+                ? "Guardando..."
+                : id
+                  ? "Guardar"
+                  : "Crear"}
+            </Button>
+          }
+          className="max-w-md"
+        />
+      }
+    />
   );
 };
 

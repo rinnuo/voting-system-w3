@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthService } from "../services/AuthService";
+import PageContainer from "../components/PageContainer";
+import Form from "../components/Form";
+import Button from "../components/Button";
+import { URLS } from "../navigation/CONSTANTS";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -15,7 +19,21 @@ const LoginForm = () => {
     setLoading(true);
     try {
       await AuthService.login(username, password);
-      navigate("/");
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      switch (user.role) {
+        case "SUPER":
+          navigate(URLS.USERS.LIST);
+          break;
+        case "PADRON":
+          navigate(URLS.HOME);
+          break;
+        case "ELECCION":
+          navigate(URLS.RECINTOS.LIST);
+          break;
+        case "JURADO":
+          navigate(URLS.HOME);
+          break;
+      }
     } catch (err: any) {
       setError(err.message || "Error al iniciar sesión");
     } finally {
@@ -24,53 +42,59 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
-        <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">Iniciar Sesión</h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-              Usuario
-            </label>
-            <input
-              id="username"
-              type="text"
-              autoComplete="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="mt-1 w-full rounded border border-gray-300 px-3 py-2 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Contraseña
-            </label>
-            <input
-              id="password"
-              type="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 w-full rounded border border-gray-300 px-3 py-2 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-              required
-            />
-          </div>
-          {error && (
-            <div className="rounded bg-red-100 px-4 py-2 text-sm text-red-700">
-              {error}
-            </div>
-          )}
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full rounded bg-blue-600 px-4 py-2 font-semibold text-white shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-60"
-          >
-            {loading ? "Ingresando..." : "Ingresar"}
-          </button>
-        </form>
-      </div>
-    </div>
+    <PageContainer
+      title="Iniciar Sesión"
+      left={
+        <Form
+          onSubmit={handleSubmit}
+          error={error}
+          loading={loading}
+          fields={
+            <>
+              <div>
+                <label htmlFor="username" className="block text-sm font-medium text-gray-200">
+                  Usuario
+                </label>
+                <input
+                  id="username"
+                  type="text"
+                  autoComplete="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-200">
+                  Contraseña
+                </label>
+                <input
+                  id="password"
+                  type="password"
+                  autoComplete="current-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
+                  required
+                />
+              </div>
+            </>
+          }
+          actions={
+            <Button
+              type="submit"
+              variant="success"
+              disabled={loading}
+              className="w-full"
+            >
+              {loading ? "Ingresando..." : "Ingresar"}
+            </Button>
+          }
+          className="max-w-md"
+        />
+      }
+    />
   );
 };
 
