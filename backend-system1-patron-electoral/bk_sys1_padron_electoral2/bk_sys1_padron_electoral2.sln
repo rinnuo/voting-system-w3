@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36127.28 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bk_sys1_padron_electoral2", "bk_sys1_padron_electoral2\bk_sys1_padron_electoral2.csproj", "{80524678-27DC-4615-ACF7-A23A29498FE3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80524678-27DC-4615-ACF7-A23A29498FE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80524678-27DC-4615-ACF7-A23A29498FE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80524678-27DC-4615-ACF7-A23A29498FE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80524678-27DC-4615-ACF7-A23A29498FE3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6CA3E4C2-C062-4E78-90D9-A872CB4D3475}
+	EndGlobalSection
+EndGlobal
