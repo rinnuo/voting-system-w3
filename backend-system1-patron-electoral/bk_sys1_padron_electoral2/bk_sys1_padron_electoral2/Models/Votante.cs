@@ -1,5 +1,8 @@
 ﻿namespace bk_sys1_padron_electoral.models
 {
+    using Microsoft.EntityFrameworkCore;
+
+    [Index(nameof(CI), IsUnique = true)]
     public class Votante
     {
         public Guid Id { get; set; }

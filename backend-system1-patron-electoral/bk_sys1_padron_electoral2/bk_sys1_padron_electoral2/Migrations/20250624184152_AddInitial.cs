@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace bk_sys1_padron_electoral2.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDb : Migration
+    public partial class AddInitial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,7 +16,7 @@ namespace bk_sys1_padron_electoral2.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CI = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CI = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     NombreCompleto = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Direccion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FotoCIanverso = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -28,6 +28,12 @@ namespace bk_sys1_padron_electoral2.Migrations
                 {
                     table.PrimaryKey("PK_Votante", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Votante_CI",
+                table: "Votante",
+                column: "CI",
+                unique: true);
         }
 
         /// <inheritdoc />

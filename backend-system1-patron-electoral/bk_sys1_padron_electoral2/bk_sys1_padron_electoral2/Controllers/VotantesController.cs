@@ -1,7 +1,8 @@
 ﻿using bk_sys1_padron_electoral.models;
+using bk_sys1_padron_electoral2.DTOs;
 using bk_sys1_padron_electoral2.complements;
 using bk_sys1_padron_electoral2.Data;
-using bk_sys1_padron_electoral2.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,18 +13,24 @@ using System.Threading.Tasks;
 
 namespace bk_sys1_padron_electoral2.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class VotantesController : ControllerBase
     {
         private readonly bk_sys1_padron_electoral2Context _context;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public VotantesController(bk_sys1_padron_electoral2Context context)
+        public VotantesController(
+            bk_sys1_padron_electoral2Context context,
+            IHttpClientFactory httpClientFactory)
         {
             _context = context;
+            _httpClientFactory = httpClientFactory;
         }
 
         // GET: api/Votantes
+        [Authorize(Policy = "EsPadron")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Votante>>> GetVotante()
         {
@@ -31,6 +38,7 @@ namespace bk_sys1_padron_electoral2.Controllers
         }
 
         // GET: api/Votantes/5
+        [Authorize(Policy = "EsPadron")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Votante>> GetVotante(Guid id)
         {
@@ -46,10 +54,14 @@ namespace bk_sys1_padron_electoral2.Controllers
 
         // PUT: api/Votantes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Policy = "EsPadron")]
         [HttpPut("{id}")]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> PutVotante(Guid id, [FromForm] VotanteUpdateDto dto)
         {
+            if (!await RecintoExisteAsync(dto.RecintoId))
+                return BadRequest("El recinto especificado no existe en el sistema 1.");
+
             var votante = await _context.Votante.FindAsync(id);
             if (votante == null)
                 return NotFound();
@@ -85,10 +97,14 @@ namespace bk_sys1_padron_electoral2.Controllers
 
         // POST: api/Votantes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Policy = "EsPadron")]
         [HttpPost]
         [Consumes("multipart/form-data")]
         public async Task<ActionResult<Votante>> PostVotante([FromForm] VotanteUploadDto dto)
         {
+            if (!await RecintoExisteAsync(dto.RecintoId))
+                return BadRequest("El recinto especificado no existe en el sistema 1.");
+
             var helper = new GuardarImagenHelper();
             var votante = new Votante
             {
@@ -109,6 +125,7 @@ namespace bk_sys1_padron_electoral2.Controllers
         }
 
         // DELETE: api/Votantes/5
+        [Authorize(Policy = "EsPadron")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVotante(Guid id)
         {
@@ -133,5 +150,56 @@ namespace bk_sys1_padron_electoral2.Controllers
         {
             return _context.Votante.Any(e => e.Id == id);
         }
+
+        //METODO PARA DAR LA INFO AL VOTANTE CON SU CI
+        [HttpGet("publico/{ci}")]
+        public async Task<ActionResult<VotantePublicoDto>> GetVotantePublico(string ci)
+        {
+            var votante = await _context.Votante.FirstOrDefaultAsync(v => v.CI == ci);
+            if (votante == null)
+                return NotFound("No se encontró ningún votante con ese CI.");
+
+            // consumir el sistema1 para traer el nombre del recinto
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.GetAsync("http://127.0.0.1:8002/system2/api/admin/recintos/");
+            if (!response.IsSuccessStatusCode)
+                return StatusCode(500, "No se pudo verificar el recinto.");
+
+            var json = await response.Content.ReadAsStringAsync();
+            var recintos = System.Text.Json.JsonSerializer.Deserialize<List<RecintoDto>>(json);
+            var recinto = recintos?.FirstOrDefault(r => r.id == votante.RecintoId);
+
+            return new VotantePublicoDto
+            {
+                CI = votante.CI,
+                NombreCompleto = votante.NombreCompleto,
+                RecintoId = votante.RecintoId,
+                NombreRecinto = recinto?.nombre ?? "(Recinto no disponible)"
+            };
+        }
+
+        //Metodos para validar el recinto
+
+        private async Task<bool> RecintoExisteAsync(int recintoId)
+        {
+            try
+            {
+                var client = _httpClientFactory.CreateClient();
+                var response = await client.GetAsync("http://127.0.0.1:8002/system2/api/admin/recintos/");
+                if (!response.IsSuccessStatusCode) return false;
+
+                var json = await response.Content.ReadAsStringAsync();
+                var recintos = System.Text.Json.JsonSerializer.Deserialize<List<RecintoDto>>(json);
+
+                return recintos?.Any(r => r.id == recintoId) ?? false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+       
     }
+
 }

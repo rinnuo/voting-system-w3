@@ -12,8 +12,8 @@ using bk_sys1_padron_electoral2.Data;
 namespace bk_sys1_padron_electoral2.Migrations
 {
     [DbContext(typeof(bk_sys1_padron_electoral2Context))]
-    [Migration("20250624001834_CreateDb")]
-    partial class CreateDb
+    [Migration("20250624184152_AddInitial")]
+    partial class AddInitial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,7 @@ namespace bk_sys1_padron_electoral2.Migrations
 
                     b.Property<string>("CI")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Direccion")
                         .IsRequired()
@@ -59,6 +59,9 @@ namespace bk_sys1_padron_electoral2.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CI")
+                        .IsUnique();
 
                     b.ToTable("Votante");
                 });

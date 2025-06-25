@@ -13,7 +13,7 @@ namespace bk_sys1_padron_electoral2.Data
             : base(options)
         {
         }
-
+        
         public DbSet<bk_sys1_padron_electoral.models.Votante> Votante { get; set; } = default!;
     }
 }

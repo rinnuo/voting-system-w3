@@ -30,7 +30,7 @@ namespace bk_sys1_padron_electoral2.Migrations
 
                     b.Property<string>("CI")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Direccion")
                         .IsRequired()
@@ -56,6 +56,9 @@ namespace bk_sys1_padron_electoral2.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CI")
+                        .IsUnique();
 
                     b.ToTable("Votante");
                 });
