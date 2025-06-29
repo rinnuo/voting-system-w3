@@ -1,0 +1,1 @@
+from .permission_serializer import IsEleccionUser, EleccionBaseViewSet

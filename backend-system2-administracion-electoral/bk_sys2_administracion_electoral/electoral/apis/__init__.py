@@ -1,1 +1,7 @@
 from .recinto_viewset import RecintoViewSet
+from .cargo_viewset import CargoViewSet
+from .partidoPolitico_viewset import PartidoPoliticoViewSet
+from .seccion_viewset import SeccionViewSet
+from .candidatura_viewset import CandidaturaViewSet
+from .mesaElectoral_viewset import MesaElectoralViewSet
+from .eleccion_viewset import EleccionViewSet

@@ -1,1 +1,7 @@
 from .recinto import Recinto
+from .cargo import Cargo
+from .partidoPolitico import PartidoPolitico
+from .candidatura import Candidatura
+from .seccion import Seccion
+from .mesaElectoral import MesaElectoral
+from .eleccion import Eleccion
