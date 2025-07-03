@@ -49,17 +49,8 @@
           "SelectedChildIndex": 3,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "VotantePublicoDto.cs",
-              "DocumentMoniker": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\DTOs\\VotantePublicoDto.cs",
-              "RelativeDocumentMoniker": "bk_sys1_padron_electoral2\\DTOs\\VotantePublicoDto.cs",
-              "ToolTip": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\DTOs\\VotantePublicoDto.cs",
-              "RelativeToolTip": "bk_sys1_padron_electoral2\\DTOs\\VotantePublicoDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T01:02:35.388Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
@@ -71,8 +62,7 @@
               "RelativeToolTip": "bk_sys1_padron_electoral2\\DTOs\\RecintoDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T00:53:18.912Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T00:53:18.912Z"
             },
             {
               "$type": "Document",
@@ -84,8 +74,7 @@
               "RelativeToolTip": "bk_sys1_padron_electoral2\\Data\\bk_sys1_padron_electoral2Context.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T00:10:28.23Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-24T00:10:28.23Z"
             },
             {
               "$type": "Document",
@@ -95,10 +84,22 @@
               "RelativeDocumentMoniker": "bk_sys1_padron_electoral2\\Controllers\\VotantesController.cs",
               "ToolTip": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\Controllers\\VotantesController.cs",
               "RelativeToolTip": "bk_sys1_padron_electoral2\\Controllers\\VotantesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAAQwCAAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-24T00:10:18.932Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VotantePublicoDto.cs",
+              "DocumentMoniker": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\DTOs\\VotantePublicoDto.cs",
+              "RelativeDocumentMoniker": "bk_sys1_padron_electoral2\\DTOs\\VotantePublicoDto.cs",
+              "ToolTip": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\DTOs\\VotantePublicoDto.cs",
+              "RelativeToolTip": "bk_sys1_padron_electoral2\\DTOs\\VotantePublicoDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T01:02:35.388Z"
             },
             {
               "$type": "Document",
@@ -110,8 +111,7 @@
               "RelativeToolTip": "bk_sys1_padron_electoral2\\DTOs\\VotanteUpdateDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T01:01:45.36Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T01:01:45.36Z"
             },
             {
               "$type": "Document",
@@ -123,12 +123,7 @@
               "RelativeToolTip": "bk_sys1_padron_electoral2\\Models\\Votante.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T00:00:51.369Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "WhenOpened": "2025-06-24T00:00:51.369Z"
             },
             {
               "$type": "Document",
@@ -140,8 +135,7 @@
               "RelativeToolTip": "bk_sys1_padron_electoral2\\Program.cs",
               "ViewState": "AgIAACYAAAAAAAAAAAAAwE4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T18:52:05.658Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-24T18:52:05.658Z"
             },
             {
               "$type": "Document",
@@ -153,8 +147,7 @@
               "RelativeToolTip": "bk_sys1_padron_electoral2\\Migrations\\20250624184152_AddInitial.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAxwCMAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T18:42:09.693Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-24T18:42:09.693Z"
             },
             {
               "$type": "Document",
@@ -166,8 +159,7 @@
               "RelativeToolTip": "bk_sys1_padron_electoral2\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-24T00:19:46.427Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-24T00:19:46.427Z"
             }
           ]
         }

@@ -1,6 +1,7 @@
 # === React (Node.js) ===
 node_modules/
 dist/
+.vs/
 *.log
 *.local
 

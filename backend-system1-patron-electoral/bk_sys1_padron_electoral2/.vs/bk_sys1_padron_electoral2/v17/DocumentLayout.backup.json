@@ -7,8 +7,20 @@
       "RelativeMoniker": "D:0:0:{80524678-27DC-4615-ACF7-A23A29498FE3}|bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2.csproj|solutionrelative:bk_sys1_padron_electoral2\\controllers\\votantescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{80524678-27DC-4615-ACF7-A23A29498FE3}|bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2.csproj|c:\\users\\indigo\\pycharmprojects\\proyecto-final-w3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\dtos\\votantepublicodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80524678-27DC-4615-ACF7-A23A29498FE3}|bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2.csproj|solutionrelative:bk_sys1_padron_electoral2\\dtos\\votantepublicodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80524678-27DC-4615-ACF7-A23A29498FE3}|bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2.csproj|c:\\users\\indigo\\pycharmprojects\\proyecto-final-w3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\data\\bk_sys1_padron_electoral2context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80524678-27DC-4615-ACF7-A23A29498FE3}|bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2.csproj|solutionrelative:bk_sys1_padron_electoral2\\data\\bk_sys1_padron_electoral2context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{80524678-27DC-4615-ACF7-A23A29498FE3}|bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2.csproj|c:\\users\\indigo\\pycharmprojects\\proyecto-final-w3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\dtos\\recintodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{80524678-27DC-4615-ACF7-A23A29498FE3}|bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2.csproj|solutionrelative:bk_sys1_padron_electoral2\\dtos\\recintodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80524678-27DC-4615-ACF7-A23A29498FE3}|bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2.csproj|c:\\users\\indigo\\pycharmprojects\\proyecto-final-w3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\dtos\\votanteupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80524678-27DC-4615-ACF7-A23A29498FE3}|bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2.csproj|solutionrelative:bk_sys1_padron_electoral2\\dtos\\votanteupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{80524678-27DC-4615-ACF7-A23A29498FE3}|bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2.csproj|c:\\users\\indigo\\pycharmprojects\\proyecto-final-w3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{80524678-27DC-4615-ACF7-A23A29498FE3}|bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2.csproj|c:\\users\\indigo\\pycharmprojects\\proyecto-final-w3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\models\\votante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{80524678-27DC-4615-ACF7-A23A29498FE3}|bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2.csproj|solutionrelative:bk_sys1_padron_electoral2\\models\\votante.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{80524678-27DC-4615-ACF7-A23A29498FE3}|bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2.csproj|c:\\users\\indigo\\pycharmprojects\\proyecto-final-w3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\data\\bk_sys1_padron_electoral2context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{80524678-27DC-4615-ACF7-A23A29498FE3}|bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2.csproj|solutionrelative:bk_sys1_padron_electoral2\\data\\bk_sys1_padron_electoral2context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{80524678-27DC-4615-ACF7-A23A29498FE3}|bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2.csproj|c:\\users\\indigo\\pycharmprojects\\proyecto-final-w3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\migrations\\20250624184152_addinitial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -43,19 +51,30 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "VotantePublicoDto.cs",
+              "DocumentMoniker": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\DTOs\\VotantePublicoDto.cs",
+              "RelativeDocumentMoniker": "bk_sys1_padron_electoral2\\DTOs\\VotantePublicoDto.cs",
+              "ToolTip": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\DTOs\\VotantePublicoDto.cs",
+              "RelativeToolTip": "bk_sys1_padron_electoral2\\DTOs\\VotantePublicoDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T01:02:35.388Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "RecintoDto.cs",
               "DocumentMoniker": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\DTOs\\RecintoDto.cs",
               "RelativeDocumentMoniker": "bk_sys1_padron_electoral2\\DTOs\\RecintoDto.cs",
               "ToolTip": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\DTOs\\RecintoDto.cs",
               "RelativeToolTip": "bk_sys1_padron_electoral2\\DTOs\\RecintoDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-25T00:53:18.912Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-25T00:53:18.912Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "bk_sys1_padron_electoral2Context.cs",
               "DocumentMoniker": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\Data\\bk_sys1_padron_electoral2Context.cs",
               "RelativeDocumentMoniker": "bk_sys1_padron_electoral2\\Data\\bk_sys1_padron_electoral2Context.cs",
@@ -63,21 +82,7 @@
               "RelativeToolTip": "bk_sys1_padron_electoral2\\Data\\bk_sys1_padron_electoral2Context.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T00:10:28.23Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Votante.cs",
-              "DocumentMoniker": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\Models\\Votante.cs",
-              "RelativeDocumentMoniker": "bk_sys1_padron_electoral2\\Models\\Votante.cs",
-              "ToolTip": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\Models\\Votante.cs",
-              "RelativeToolTip": "bk_sys1_padron_electoral2\\Models\\Votante.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T00:00:51.369Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-24T00:10:28.23Z"
             },
             {
               "$type": "Document",
@@ -87,22 +92,9 @@
               "RelativeDocumentMoniker": "bk_sys1_padron_electoral2\\Controllers\\VotantesController.cs",
               "ToolTip": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\Controllers\\VotantesController.cs",
               "RelativeToolTip": "bk_sys1_padron_electoral2\\Controllers\\VotantesController.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAiwGMAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAADIAAAAAAAAAAAAwwLEAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-24T00:10:18.932Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\Program.cs",
-              "RelativeDocumentMoniker": "bk_sys1_padron_electoral2\\Program.cs",
-              "ToolTip": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\Program.cs",
-              "RelativeToolTip": "bk_sys1_padron_electoral2\\Program.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAAwE4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T18:52:05.658Z",
               "EditorCaption": ""
             },
             {
@@ -111,7 +103,43 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VotanteUpdateDto.cs",
+              "DocumentMoniker": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\DTOs\\VotanteUpdateDto.cs",
+              "RelativeDocumentMoniker": "bk_sys1_padron_electoral2\\DTOs\\VotanteUpdateDto.cs",
+              "ToolTip": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\DTOs\\VotanteUpdateDto.cs",
+              "RelativeToolTip": "bk_sys1_padron_electoral2\\DTOs\\VotanteUpdateDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T01:01:45.36Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Votante.cs",
+              "DocumentMoniker": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\Models\\Votante.cs",
+              "RelativeDocumentMoniker": "bk_sys1_padron_electoral2\\Models\\Votante.cs",
+              "ToolTip": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\Models\\Votante.cs",
+              "RelativeToolTip": "bk_sys1_padron_electoral2\\Models\\Votante.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T00:00:51.369Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\Program.cs",
+              "RelativeDocumentMoniker": "bk_sys1_padron_electoral2\\Program.cs",
+              "ToolTip": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\Program.cs",
+              "RelativeToolTip": "bk_sys1_padron_electoral2\\Program.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAAwE4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T18:52:05.658Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "20250624184152_AddInitial.cs",
               "DocumentMoniker": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\Migrations\\20250624184152_AddInitial.cs",
               "RelativeDocumentMoniker": "bk_sys1_padron_electoral2\\Migrations\\20250624184152_AddInitial.cs",
@@ -119,12 +147,11 @@
               "RelativeToolTip": "bk_sys1_padron_electoral2\\Migrations\\20250624184152_AddInitial.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAxwCMAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T18:42:09.693Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-24T18:42:09.693Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Indigo\\PycharmProjects\\PROYECTO-FINAL-W3\\voting-system-w3\\voting-system-w3\\backend-system1-patron-electoral\\bk_sys1_padron_electoral2\\bk_sys1_padron_electoral2\\appsettings.json",
               "RelativeDocumentMoniker": "bk_sys1_padron_electoral2\\appsettings.json",
@@ -132,8 +159,7 @@
               "RelativeToolTip": "bk_sys1_padron_electoral2\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-24T00:19:46.427Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-24T00:19:46.427Z"
             }
           ]
         }
