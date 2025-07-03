@@ -8,7 +8,6 @@ dist/
 # === Django (Python) ===
 __pycache__/
 *.py[cod]
-*.db
 *.log
 *.pot
 *.pyc

@@ -17,7 +17,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+//CORS
+var corsPolicyName = "AllowFronted";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: corsPolicyName,
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173") // ⚠️ Coincide con el puerto del frontend
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 
 
 // 🔑 Tu secret compartida con Django
@@ -91,7 +102,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseStaticFiles(); // para ver imagenes?
-
+app.UseCors(corsPolicyName); //CORS
 app.UseAuthentication(); //token
 app.UseAuthorization();
 
