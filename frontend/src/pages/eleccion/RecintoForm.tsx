@@ -20,7 +20,7 @@ const RecintoForm = () => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [dataLoaded, setDataLoaded] = useState(!id); // true if creating, false if editing
+  const [dataLoaded, setDataLoaded] = useState(!id);
 
   useEffect(() => {
     if (id) {

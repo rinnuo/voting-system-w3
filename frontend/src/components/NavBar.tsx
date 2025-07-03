@@ -49,12 +49,14 @@ const NavBar = () => {
                 </Dropdown>
               )}
               {user?.role === 'PADRON' && (
-                <Link
-                  to={URLS.HOME}
-                  className="px-4 py-2 rounded bg-gray-700 text-gray-200 hover:bg-gray-600 transition"
-                >
-                  PADRON (placeholder)
-                </Link>
+                <Dropdown label="Votantes">
+                  <Link to={URLS.VOTANTES.LIST} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
+                    Lista de Votantes
+                  </Link>
+                  <Link to={URLS.VOTANTES.CREATE} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
+                    Crear Votante
+                  </Link>
+                </Dropdown>
               )}
               {user?.role === 'VOTACION' && (
                 <Link
