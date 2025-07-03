@@ -2,7 +2,7 @@ import axios from "axios";
 import type { AxiosInstance } from "axios";
 
 const BASE_URLS = {
-  padron: "http://localhost:8001/system1/api",
+  padron: "http://localhost:7265/api",
   eleccion: "http://localhost:8002/system2/api",
   votacion: "http://localhost:8003/system3/api",
   user: "http://localhost:8004/system4/api",

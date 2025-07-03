@@ -6,6 +6,11 @@ export const URLS = {
         CREATE: "/users/create",
         EDIT: "/users/:id",
     },
+    VOTANTES: {
+        LIST: "/votantes/list",
+        CREATE: "/votantes/create",
+        EDIT: "/votantes/:id",
+    },
     RECINTOS: {
         LIST: "/recintos/list",
         CREATE: "/recintos/create",
