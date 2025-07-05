@@ -44,15 +44,13 @@ const VotanteList = () => {
 	};
 
 	const columns = [
-		{ header: "ID", accessor: "id" as keyof Votante },
 		{ header: "CI", accessor: "ci" as keyof Votante },
 		{ header: "Nombre Completo", accessor: "nombreCompleto" as keyof Votante },
 		{ header: "Dirección", accessor: "direccion" as keyof Votante },
 		{ header: "Recinto ID", accessor: "recintoId" as keyof Votante },
-		{ header: "Foto CI Anverso", accessor: "fotoCIanverso" as keyof Votante, render: (votante: Votante) => votante.fotoCIanverso ? <img src={URL.createObjectURL(votante.fotoCIanverso)} alt="Foto CI Anverso" className="w-16 h-16 object-cover" /> : "No disponible" },
-		{ header: "Foto CI Reverso", accessor: "fotoCIreverso" as keyof Votante, render: (votante: Votante) => votante.fotoCIreverso ? <img src={URL.createObjectURL(votante.fotoCIreverso)} alt="Foto CI Reverso" className="w-16 h-16 object-cover" /> : "No disponible" },
-		{ header: "Foto Votante", accessor: "fotoVotante" as keyof Votante, render: (votante: Votante) => votante.fotoVotante ? <img src={URL.createObjectURL(votante.fotoVotante)} alt="Foto Votante" className="w-16 h-16 object-cover" /> : "No disponible" },
-		
+		{ header: "Foto CI Anverso", accessor: (row: Votante) => row.fotoCIanverso ? <img src={`https://localhost:7265/${row.fotoCIanverso}`} alt="Foto CI Anverso" className="h-32 max-w-full object-contain" /> : "No disponible" },
+		{ header: "Foto CI Reverso", accessor: (row: Votante) => row.fotoCIreverso ? <img src={`https://localhost:7265/${row.fotoCIreverso}`} alt="Foto CI Reverso" className="h-32 max-w-full object-contain" /> : "No disponible" },
+		{ header: "Foto Votante", accessor: (row: Votante) => row.fotoVotante ? <img src={`https://localhost:7265/${row.fotoVotante}`} alt="Foto Votante" className="h-32 max-w-full object-contain" /> : "No disponible" },
 	];
 
 	return (

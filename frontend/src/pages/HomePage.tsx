@@ -67,7 +67,7 @@ const HomePage = () => {
         />
       }
       right={
-        <div className="min-w-[280px]">
+        <div className="min-w-[280px] m-6">
           {loading && (
             <p className="text-gray-300">Buscando votante…</p>
           )}

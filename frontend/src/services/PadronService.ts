@@ -8,7 +8,7 @@ export class PadronService {
     return res.data;
   }
 
-  static async getVotante(id: number): Promise<Votante> {
+  static async getVotante(id: string): Promise<Votante> {
     const res = await padronApi.get<Votante>(`Votantes/${id}/`);
     return res.data;
   }
@@ -27,7 +27,7 @@ export class PadronService {
   }
 
   static async updateVotante(
-    id: number,
+    id: string,
     data: Partial<Omit<Votante, "id">>
   ): Promise<Votante> {
     const formData = new FormData();
@@ -36,13 +36,13 @@ export class PadronService {
         formData.append(key, value);
       }
     });
-    const res = await padronApi.patch<Votante>(`Votantes/${id}/`, formData, {
+    const res = await padronApi.put<Votante>(`Votantes/${id}/`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     return res.data;
   }
 
-  static async deleteVotante(id: number): Promise<void> {
+  static async deleteVotante(id: string): Promise<void> {
     await padronApi.delete(`Votantes/${id}/`);
   }
 

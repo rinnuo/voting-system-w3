@@ -1,4 +1,3 @@
-// Form for votante, should load details if editing an existing votante, use RecintoForm.tsx as example
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import type { Votante } from "../../models/votante";
@@ -29,7 +28,7 @@ const VotanteForm = () => {
   useEffect(() => {
     if (id) {
       setLoading(true);
-      PadronService.getVotante(Number(id))
+      PadronService.getVotante(String(id))
         .then((votante) => {
           setForm({
             ci: votante.ci,
@@ -80,7 +79,7 @@ const VotanteForm = () => {
         if (!payload.fotoCIanverso) delete payload.fotoCIanverso;
         if (!payload.fotoCIreverso) delete payload.fotoCIreverso;
         if (!payload.fotoVotante) delete payload.fotoVotante;
-        await PadronService.updateVotante(Number(id), payload);
+        await PadronService.updateVotante(String(id), payload);
         setSuccess("Votante actualizado correctamente.");
       } else {
         await PadronService.createVotante(form);
