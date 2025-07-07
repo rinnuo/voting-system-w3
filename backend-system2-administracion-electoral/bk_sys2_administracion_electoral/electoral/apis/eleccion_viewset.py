@@ -6,7 +6,7 @@ from electoral.models import Eleccion
 class EleccionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Eleccion
-        fields = ['id', 'nombre', 'tipo', 'fecha', 'secciones']
+        fields = ['id', 'nombre', 'tipo', 'fecha', 'activa','secciones']
 
 class EleccionViewSet(EleccionBaseViewSet):
     serializer_class = EleccionSerializer
@@ -16,3 +16,4 @@ class EleccionViewSet(EleccionBaseViewSet):
         if self.request.method in ['GET', 'HEAD', 'OPTIONS']:
             return [AllowAny()]
         return [IsEleccionUser()]
+

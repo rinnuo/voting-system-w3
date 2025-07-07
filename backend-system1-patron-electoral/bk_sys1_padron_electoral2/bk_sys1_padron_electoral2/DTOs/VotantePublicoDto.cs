@@ -6,5 +6,7 @@
         public string NombreCompleto { get; set; }
         public int RecintoId { get; set; }
         public string NombreRecinto { get; set; }
+        public int? MesaNumero { get; set; }
+
     }
 }

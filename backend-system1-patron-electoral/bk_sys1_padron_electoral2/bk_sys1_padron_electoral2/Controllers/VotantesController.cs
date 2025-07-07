@@ -1,7 +1,7 @@
 ﻿using bk_sys1_padron_electoral.models;
-using bk_sys1_padron_electoral2.DTOs;
 using bk_sys1_padron_electoral2.complements;
 using bk_sys1_padron_electoral2.Data;
+using bk_sys1_padron_electoral2.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +9,13 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using System.Text;
+using System.Text.Json;
+using System.Net.Http;
+using System.Net.Http.Headers;
+
 
 namespace bk_sys1_padron_electoral2.Controllers
 {
@@ -20,13 +26,16 @@ namespace bk_sys1_padron_electoral2.Controllers
     {
         private readonly bk_sys1_padron_electoral2Context _context;
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ILogger<VotantesController> _logger;
 
         public VotantesController(
             bk_sys1_padron_electoral2Context context,
-            IHttpClientFactory httpClientFactory)
+            IHttpClientFactory httpClientFactory,
+            ILogger<VotantesController> logger)
         {
             _context = context;
             _httpClientFactory = httpClientFactory;
+            _logger = logger;
         }
 
         // GET: api/Votantes
@@ -59,9 +68,6 @@ namespace bk_sys1_padron_electoral2.Controllers
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> PutVotante(Guid id, [FromForm] VotanteUpdateDto dto)
         {
-            if (!await RecintoExisteAsync(dto.RecintoId))
-                return BadRequest("El recinto especificado no existe en el sistema 1.");
-
             var votante = await _context.Votante.FindAsync(id);
             if (votante == null)
                 return NotFound();
@@ -71,7 +77,9 @@ namespace bk_sys1_padron_electoral2.Controllers
             votante.CI = dto.CI;
             votante.NombreCompleto = dto.NombreCompleto;
             votante.Direccion = dto.Direccion;
-            votante.RecintoId = dto.RecintoId;
+            //votante.RecintoId = dto.RecintoId;
+            votante.Lat = dto.Lat;
+            votante.Lng = dto.Lng
 
             if (dto.FotoCIanverso != null)
             {
@@ -92,6 +100,26 @@ namespace bk_sys1_padron_electoral2.Controllers
             }
 
             await _context.SaveChangesAsync();
+            //notificar al sistema 2 que se ha actualizado un votante
+            //await RegistrarVotanteEnSistema2Async(id, votante.Lat, votante.Lng, votante.RecintoId);
+
+            try
+            {
+                await RegistrarVotanteEnSistema2Async(
+                    votante.Id,
+                    votante.Lat,
+                    votante.Lng,
+                    votante.RecintoId
+                );
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Fallo al notificar Sistema2 para votante {VotanteId}", votante.Id);
+                // devolvemos 502 Bad Gateway para indicar problema al conectar con el servicio externo
+                return StatusCode(502, new { detail = "Votante actualizado, pero falló la notificación al sistema electoral, verifique si la seccion seleccionada es correcta" });
+            }
+
+
             return NoContent();
         }
 
@@ -102,8 +130,6 @@ namespace bk_sys1_padron_electoral2.Controllers
         [Consumes("multipart/form-data")]
         public async Task<ActionResult<Votante>> PostVotante([FromForm] VotanteUploadDto dto)
         {
-            if (!await RecintoExisteAsync(dto.RecintoId))
-                return BadRequest("El recinto especificado no existe en el sistema 1.");
 
             var helper = new GuardarImagenHelper();
             var votante = new Votante
@@ -112,7 +138,9 @@ namespace bk_sys1_padron_electoral2.Controllers
                 CI = dto.CI,
                 NombreCompleto = dto.NombreCompleto,
                 Direccion = dto.Direccion,
-                RecintoId = dto.RecintoId,
+                //RecintoId = dto.RecintoId,
+                Lat = dto.Lat,
+                Lng = dto.Lng,
                 FotoCIanverso = await helper.GuardarImagen(dto.FotoCIanverso),
                 FotoCIreverso = await helper.GuardarImagen(dto.FotoCIreverso),
                 FotoVotante = await helper.GuardarImagen(dto.FotoVotante)
@@ -121,6 +149,23 @@ namespace bk_sys1_padron_electoral2.Controllers
             _context.Votante.Add(votante);
             await _context.SaveChangesAsync();
 
+            //notificar al sistema 2 que se ha registrado un votante
+            try
+            {
+                await RegistrarVotanteEnSistema2Async(
+                    votante.Id,
+                    votante.Lat,
+                    votante.Lng,
+                    votante.RecintoId
+                );
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Fallo al notificar Sistema2 para votante {VotanteId}", votante.Id);
+                // devolvemos 502 Bad Gateway para indicar problema al conectar con el servicio externo
+                return StatusCode(502, new { detail = "Votante actualizado, pero falló la notificación al sistema electoral, verifique si la seccion seleccionada es correcta" });
+            }
+           
             return CreatedAtAction(nameof(GetVotante), new { id = votante.Id }, votante);
         }
 
@@ -155,51 +200,82 @@ namespace bk_sys1_padron_electoral2.Controllers
         [HttpGet("publico/{ci}")]
         public async Task<ActionResult<VotantePublicoDto>> GetVotantePublico(string ci)
         {
-            var votante = await _context.Votante.FirstOrDefaultAsync(v => v.CI == ci);
+            // 1) Busco al votante en mi BD
+            var votante = await _context.Votante
+                .AsNoTracking()
+                .FirstOrDefaultAsync(v => v.CI == ci);
+
             if (votante == null)
                 return NotFound("No se encontró ningún votante con ese CI.");
 
-            // consumir el sistema1 para traer el nombre del recinto
+            // 2) Llamo a Sistema 2 para obtener sección, recinto y mesa
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync("http://127.0.0.1:8002/system2/api/admin/recintos/");
-            if (!response.IsSuccessStatusCode)
-                return StatusCode(500, "No se pudo verificar el recinto.");
+            var partResponse = await client
+                .GetAsync($"http://127.0.0.1:8002/system2/api/admin/participaciones/{votante.Id}");
 
-            var json = await response.Content.ReadAsStringAsync();
-            var recintos = System.Text.Json.JsonSerializer.Deserialize<List<RecintoDto>>(json);
-            var recinto = recintos?.FirstOrDefault(r => r.id == votante.RecintoId);
+            if (!partResponse.IsSuccessStatusCode)
+                return StatusCode(502, "No se pudo obtener la asignación de mesa.");
 
-            return new VotantePublicoDto
+            var partJson = await partResponse.Content.ReadAsStringAsync();
+            var partDto = JsonSerializer.Deserialize<ParticipacionDto>(partJson, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            if (partDto == null)
+                return StatusCode(502, "Respuesta inválida de asignación de mesa.");
+
+
+            // 4) Armar DTO de salida
+            var salida = new VotantePublicoDto
             {
                 CI = votante.CI,
                 NombreCompleto = votante.NombreCompleto,
-                RecintoId = votante.RecintoId,
-                NombreRecinto = recinto?.nombre ?? "(Recinto no disponible)"
+                RecintoId = partDto.RecintoId,
+                NombreRecinto = partDto.RecintoNombre,  // vienes directo del API
+                MesaNumero = partDto.MesaNumero
             };
+
+            return Ok(salida);
         }
 
-        //Metodos para validar el recinto
+     
 
-        private async Task<bool> RecintoExisteAsync(int recintoId)
+        //METODO PARA REGISTRAR UN VOTANTE EN EL SISTEMA 2:
+        private async Task RegistrarVotanteEnSistema2Async(
+            Guid votanteId,
+            double lat,
+            double lng,
+            int recintoId
+        )
         {
-            try
-            {
-                var client = _httpClientFactory.CreateClient();
-                var response = await client.GetAsync("http://127.0.0.1:8002/system2/api/admin/recintos/");
-                if (!response.IsSuccessStatusCode) return false;
+            var client = _httpClientFactory.CreateClient();
 
-                var json = await response.Content.ReadAsStringAsync();
-                var recintos = System.Text.Json.JsonSerializer.Deserialize<List<RecintoDto>>(json);
-
-                return recintos?.Any(r => r.id == recintoId) ?? false;
-            }
-            catch
+            var payload = new
             {
-                return false;
+                votante_id = votanteId,
+                lat = lat,
+                lng = lng,
+                recinto_id = recintoId
+            };
+
+            // 1) Serializar a JSON
+            var json = JsonSerializer.Serialize(payload);
+
+            // 2) Crear StringContent y fijar Content-Length
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            content.Headers.ContentLength = Encoding.UTF8.GetByteCount(json);
+
+            // 3) Hacer el POST (ya no chunked)
+            var url = "http://127.0.0.1:8002/system2/api/admin/registrar_votante/registrar_votante/";
+            var response = await client.PostAsync(url, content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                throw new Exception($"Error registrando votante en Sistema 2: {error}");
             }
+
         }
-
-       
     }
-
 }

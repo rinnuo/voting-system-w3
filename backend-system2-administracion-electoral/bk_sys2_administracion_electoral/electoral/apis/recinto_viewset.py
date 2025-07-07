@@ -6,7 +6,7 @@ from electoral.models import Recinto
 class RecintoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recinto
-        fields = ["id", "nombre", "lat", "lng"]
+        fields = ["id", "nombre", "lat", "lng", "seccion"]
 
 class RecintoViewSet(EleccionBaseViewSet):
     serializer_class = RecintoSerializer

@@ -10,6 +10,7 @@ class Eleccion(models.Model):
     nombre = models.CharField(max_length=200)
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
     fecha = models.DateField()
+    activa = models.BooleanField(default=True)
     secciones = models.ManyToManyField('Seccion', blank=True)
 
     def __str__(self):

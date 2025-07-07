@@ -6,3 +6,4 @@ from .seccion import Seccion
 from .mesaElectoral import MesaElectoral
 from .eleccion import Eleccion
 from .papeleta import Papeleta
+from .participacionVotanteEleccion import ParticipacionVotanteEleccion

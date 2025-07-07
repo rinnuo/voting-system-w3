@@ -1,0 +1,30 @@
+from django.db import models
+
+class ParticipacionVotanteEleccion(models.Model):
+    votante_id = models.UUIDField()   # mismo GUID que genera Sistema 1
+    eleccion   = models.ForeignKey(
+                    'Eleccion',
+                    on_delete=models.CASCADE,
+                    related_name='participaciones'
+                 )
+    seccion    = models.ForeignKey(
+                    'Seccion',
+                    on_delete=models.SET_NULL,
+                    null=True
+                 )
+    recinto    = models.ForeignKey(
+                    'Recinto',
+                    on_delete=models.SET_NULL,
+                    null=True
+                 )
+    mesa       = models.ForeignKey(
+                    'MesaElectoral',
+                    on_delete=models.SET_NULL,
+                    null=True,
+                    blank=True,
+                    related_name='asignaciones'
+                 )
+    voto_emitido = models.BooleanField(default=False)
+
+    class Meta:
+        unique_together = ('votante_id', 'eleccion')
