@@ -109,6 +109,7 @@ namespace bk_sys1_padron_electoral2.Controllers
                     votante.Id,
                     votante.Lat,
                     votante.Lng,
+                    votante.NombreCompleto,
                     votante.RecintoId
                 );
             }
@@ -156,6 +157,7 @@ namespace bk_sys1_padron_electoral2.Controllers
                     votante.Id,
                     votante.Lat,
                     votante.Lng,
+                    votante.NombreCompleto,
                     votante.RecintoId
                 );
             }
@@ -187,6 +189,17 @@ namespace bk_sys1_padron_electoral2.Controllers
 
             _context.Votante.Remove(votante);
             await _context.SaveChangesAsync();
+            //now, borrarlo del sistema2
+            var client = _httpClientFactory.CreateClient();
+            var resp = await client.DeleteAsync(
+                $"http://127.0.0.1:8002/system2/api/admin/participaciones/{id}/"
+            );
+            if (!resp.IsSuccessStatusCode && resp.StatusCode != System.Net.HttpStatusCode.NotFound)
+            {
+                _logger.LogWarning(
+                    "No se pudieron borrar participaciones en S2 para {VotanteId}", id
+                );
+             }
 
             return NoContent();
         }
@@ -246,6 +259,7 @@ namespace bk_sys1_padron_electoral2.Controllers
             Guid votanteId,
             double lat,
             double lng,
+            string nombreCompleto,
             int recintoId
         )
         {
@@ -256,6 +270,7 @@ namespace bk_sys1_padron_electoral2.Controllers
                 votante_id = votanteId,
                 lat = lat,
                 lng = lng,
+                nombre_completo = nombreCompleto,
                 recinto_id = recintoId
             };
 

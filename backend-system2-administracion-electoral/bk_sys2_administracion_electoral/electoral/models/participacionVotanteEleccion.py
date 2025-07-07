@@ -2,6 +2,16 @@ from django.db import models
 
 class ParticipacionVotanteEleccion(models.Model):
     votante_id = models.UUIDField()   # mismo GUID que genera Sistema 1
+    nombre_completo = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text="Nombre completo del votante"
+    )
+    apellido_paterno = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="Apellido paterno extraído"
+    )
     eleccion   = models.ForeignKey(
                     'Eleccion',
                     on_delete=models.CASCADE,

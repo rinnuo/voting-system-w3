@@ -1,3 +1,4 @@
+from django.core.management import call_command
 from rest_framework import serializers, viewsets
 from rest_framework.permissions import AllowAny
 from electoral.models import Papeleta
@@ -49,6 +50,11 @@ class PapeletaViewSet(viewsets.ReadOnlyModelViewSet):
     def list(self, request, *args, **kwargs):
         ele_id = request.query_params.get('eleccion')
         sec_id = request.query_params.get('seccion')
+
+        try: #llamamos a generar la papeleta commando
+            call_command('generar_papeletas')
+        except Exception as e:
+            print("Error regenerando papeletas:", e)
 
         # Obtener metadatos
         try:
