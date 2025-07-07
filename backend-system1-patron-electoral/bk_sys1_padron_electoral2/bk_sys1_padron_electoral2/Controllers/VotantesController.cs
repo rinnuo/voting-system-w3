@@ -79,7 +79,7 @@ namespace bk_sys1_padron_electoral2.Controllers
             votante.Direccion = dto.Direccion;
             //votante.RecintoId = dto.RecintoId;
             votante.Lat = dto.Lat;
-            votante.Lng = dto.Lng
+            votante.Lng = dto.Lng;
 
             if (dto.FotoCIanverso != null)
             {
