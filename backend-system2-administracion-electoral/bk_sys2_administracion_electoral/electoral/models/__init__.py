@@ -7,3 +7,4 @@ from .mesaElectoral import MesaElectoral
 from .eleccion import Eleccion
 from .papeleta import Papeleta
 from .participacionVotanteEleccion import ParticipacionVotanteEleccion
+from .juradoMesa import JuradoMesa

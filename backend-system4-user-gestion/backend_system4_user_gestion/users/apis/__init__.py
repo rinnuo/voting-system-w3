@@ -1,1 +1,2 @@
 from .user_viewset import UserViewSet
+from .bulkJurado_viewset import UserBulkCreateViewSet
