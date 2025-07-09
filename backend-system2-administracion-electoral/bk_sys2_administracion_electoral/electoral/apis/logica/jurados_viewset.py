@@ -1,6 +1,4 @@
 import requests
-from collections import defaultdict
-from django.conf import settings
 from rest_framework import viewsets, status, serializers
 from rest_framework.decorators import action, permission_classes
 from rest_framework.permissions import IsAdminUser, AllowAny
@@ -11,11 +9,12 @@ from electoral.models import ParticipacionVotanteEleccion, JuradoMesa, MesaElect
 import logging
 logger = logging.getLogger(__name__)
 
-# Serializer para CRUD de JuradoMesa
 class JuradoMesaSerializer(serializers.ModelSerializer):
+    eleccion_id = serializers.IntegerField(source='mesa.eleccion.id', read_only=True)
+
     class Meta:
         model = JuradoMesa
-        fields = ['id', 'participante_id', 'mesa', 'user4_id', 'username']
+        fields = ['id', 'eleccion_id', 'participante_id', 'mesa', 'user4_id', 'username']
 
 
 class JuradoMesaViewSet(viewsets.ModelViewSet):
@@ -26,6 +25,13 @@ class JuradoMesaViewSet(viewsets.ModelViewSet):
         if self.request.method in ['GET', 'HEAD', 'OPTIONS']:
             return [AllowAny()]
         return [IsEleccionUser()]
+
+    def get_queryset(self): #con esto filtramos los jurados por la elección
+        qs = JuradoMesa.objects.select_related('mesa__eleccion')
+        ele = self.request.query_params.get('eleccion')
+        if ele:
+            qs = qs.filter(mesa__eleccion__id=ele)
+        return qs
 
     @action(detail=False, methods=['post'], url_path='orquestar-jurados')
     def orquestar(self, request):
