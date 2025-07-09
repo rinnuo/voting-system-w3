@@ -1,17 +1,34 @@
 import requests
 from collections import defaultdict
-from rest_framework import viewsets, status
-from rest_framework.decorators import action
-from rest_framework.response import Response
+from django.conf import settings
+from rest_framework import viewsets, status, serializers
+from rest_framework.decorators import action, permission_classes
 from rest_framework.permissions import IsAdminUser, AllowAny
-from electoral.models import ParticipacionVotanteEleccion, JuradoMesa
+from rest_framework.response import Response
 
-class OrquestadorJuradoViewSet(viewsets.GenericViewSet):
-    permission_classes = [AllowAny]
+from electoral.apis.base import IsEleccionUser
+from electoral.models import ParticipacionVotanteEleccion, JuradoMesa, MesaElectoral
+import logging
+logger = logging.getLogger(__name__)
+
+# Serializer para CRUD de JuradoMesa
+class JuradoMesaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JuradoMesa
+        fields = ['id', 'participante_id', 'mesa', 'user4_id', 'username']
+
+
+class JuradoMesaViewSet(viewsets.ModelViewSet):
+    queryset = JuradoMesa.objects.all()
+    serializer_class = JuradoMesaSerializer
+
+    def get_permissions(self):
+        if self.request.method in ['GET', 'HEAD', 'OPTIONS']:
+            return [AllowAny()]
+        return [IsEleccionUser()]
 
     @action(detail=False, methods=['post'], url_path='orquestar-jurados')
-    def orquestar_jurados(self, request):
-        # 1. Leer parámetros
+    def orquestar(self, request):
         eleccion_id = request.query_params.get('eleccion')
         por_mesa = int(request.query_params.get('por_mesa', 1))
 
@@ -21,55 +38,74 @@ class OrquestadorJuradoViewSet(viewsets.GenericViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # 2. Obtener participaciones de esa elección
-        parts = ParticipacionVotanteEleccion.objects.filter(
-            eleccion_id=eleccion_id
-        ).select_related('mesa').order_by('apellido_paterno')
+        # 1) Traer TODAS las mesas de la elección
+        mesas_qs = MesaElectoral.objects.filter(eleccion_id=eleccion_id)
+        # Inicializar dict con lista vacía por cada mesa
+        mesas = {m.id: [] for m in mesas_qs}
 
-        # 3. Agrupar por mesa
-        mesas = defaultdict(list)
+        # 2) Traer participaciones y poblar
+        parts = (ParticipacionVotanteEleccion.objects
+                 .filter(eleccion_id=eleccion_id)
+                 .select_related('mesa')
+                 .order_by('apellido_paterno'))
         for p in parts:
-            if p.mesa:
-                mesas[p.mesa.id].append(p)
+            if p.mesa_id in mesas:
+                mesas[p.mesa_id].append(p)
 
-        # 4. Seleccionar N candidatos por mesa y preparar payload bulk
-        bulk = []
-        mapping = {}  # para luego correlacionar
-        for mesa_id, lista in mesas.items():
-            seleccion = lista[:por_mesa]
-            for p in seleccion:
-                if not p.nombre_completo or len(p.nombre_completo.split()) == 0:
-                    continue  # Ignorar registros sin nombre
+        # ---- DEBUG aquí ----
+        #logger.debug("DICT MESAS → %s", {mid: len(lst) for mid, lst in mesas.items()})
+        ## opcionalmente:
+        #return Response(
+        #    {"mesas": {mid: len(lst) for mid, lst in mesas.items()}},
+        #    status=status.HTTP_200_OK
+        #)
 
-                first = p.nombre_completo.split()[0]
-                last = p.nombre_completo.split()[-1] if len(
-                    p.nombre_completo.split()) > 1 else first  # Usar el nombre como apellido si no hay apellido
+        # 3) Validar: cada mesa debe tener al menos `por_mesa` participaciones
+        insuf = []
+        for mid, lista in mesas.items():
+            if len(lista) < por_mesa:
+                insuf.append(f"Mesa {mid} tiene {len(lista)}, requiere {por_mesa}")
 
-                base = f"{first.lower()}.{last.lower()}"
-                payload = {
-                    "participant_id": str(p.votante_id),
-                    "base_username":  base,
-                    "password":       "Pwd12345!",
-                    "first_name":     first,
-                    "last_name":      last,
-                    "email":          f"jurado+{base}@example.com",
-                    "role":           "JURADO"
-                }
-                bulk.append(payload)
-                # guardo para correlacionar después
-                mapping[str(p.votante_id)] = mesa_id
-
-        if not bulk:
+        if insuf:
             return Response(
-                {"detail": "No hay participantes para orquestar."},
-                status=status.HTTP_200_OK
+                {
+                    "detail": f"Mesas con participantes insuficientes, total de mesas en todos los recintos: {len(mesas.items())}",
+                    "errors": insuf
+                },
+                status=status.HTTP_400_BAD_REQUEST
             )
 
-        # 5. Llamar al bulk_create de Sistema 4
+        for mid, lista in mesas.items():
+            mesas[mid] = [
+                p for p in lista
+                if p.nombre_completo and p.nombre_completo.strip()
+            ]
+
+        # 4) Si pasa validación, construyes el bulk para S4
+        bulk, mapping = [], {}
+        for mesa_id, lista in mesas.items():
+            for p in lista[:por_mesa]:
+                names = p.nombre_completo.split()
+                first = names[0]
+                last = names[-1] if len(names) > 1 else first
+                base = f"{first.lower()}.{last.lower()}"
+
+                bulk.append({
+                    "participant_id": str(p.votante_id),
+                    "base_username": base,
+                    "password": "nur123",
+                    "first_name": first,
+                    "last_name": last,
+                    "email": f"jurado+{base}@example.com",
+                    "role": "JURADO"
+                })
+                mapping[str(p.votante_id)] = mesa_id
+
+        # 6) Llamar a bulk_create en Sistema 4
         url4 = f"http://127.0.0.1:8004/system4/api/admin/users/bulk_create/"
         headers = {
             "Authorization": request.headers.get("Authorization"),
-            "Content-Type": "application/json"
+            "Content-Type":  "application/json"
         }
         resp = requests.post(url4, json=bulk, headers=headers)
         if resp.status_code not in (200, 201):
@@ -77,25 +113,22 @@ class OrquestadorJuradoViewSet(viewsets.GenericViewSet):
                 {"detail": "Error al crear usuarios en Sistema 4", "error": resp.text},
                 status=status.HTTP_502_BAD_GATEWAY
             )
-        results = resp.json()  # lista de {participant_id, user_id, username}
+        results = resp.json()
 
-        # 6. Guardar en JuradoMesa y armar respuesta
+        # 6) Guardar en JuradoMesa y devolver
         output = []
         for r in results:
-            pid   = r['participant_id']
-            uid   = r['user_id']
-            usr   = r['username']
-            mesa  = mapping.get(pid)
-
-            # comentado por desarrollo de Sistema 4
+            pid, uid, usr = r['participant_id'], r['user_id'], r['username']
+            ms = mapping.get(pid)
             jm, created = JuradoMesa.objects.update_or_create(
                 participante_id=pid,
-                mesa_id=mesa,
+                mesa_id=ms,
                 defaults={"user4_id": uid, "username": usr}
             )
             output.append({
+                "id": jm.id,
                 "participante_id": pid,
-                "mesa_id": mesa,
+                "mesa_id": ms,
                 "user4_id": uid,
                 "username": usr,
                 "created": created
@@ -103,26 +136,24 @@ class OrquestadorJuradoViewSet(viewsets.GenericViewSet):
 
         return Response(output, status=status.HTTP_201_CREATED)
 
+
     @action(detail=False, methods=['delete'], url_path='clear-by-election')
     def clear_by_election(self, request):
         ele_id = request.query_params.get('eleccion')
         if not ele_id:
             return Response(
-                {"detail": "Se requiere el parámetro ?eleccion=<id>"},
+                {"detail": "Se requiere ?eleccion=<id>"},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Obtener todos los votante_ids de esa elección
-        votante_ids = ParticipacionVotanteEleccion.objects \
-            .filter(eleccion_id=ele_id) \
-            .values_list('votante_id', flat=True)
-
-        # Borrar las asignaciones cuya participante_id esté en esa lista
-        deleted_count, _ = JuradoMesa.objects \
-            .filter(participante_id__in=votante_ids) \
-            .delete()
+        vot_ids = (ParticipacionVotanteEleccion.objects
+                   .filter(eleccion_id=ele_id)
+                   .values_list('votante_id', flat=True))
+        deleted, _ = (JuradoMesa.objects
+                      .filter(participante_id__in=vot_ids)
+                      .delete())
 
         return Response(
-            {"detail": f"Eliminadas {deleted_count} asignaciones de jurado"},
+            {"detail": f"Eliminadas {deleted} asignaciones."},
             status=status.HTTP_204_NO_CONTENT
         )

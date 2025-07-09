@@ -81,6 +81,10 @@ namespace bk_sys1_padron_electoral2.Controllers
             votante.Lat = dto.Lat;
             votante.Lng = dto.Lng;
 
+            var existe = await _context.Votante.AnyAsync(v => v.CI == dto.CI && v.Id != id); //validad CI duplicados
+            if (existe) return BadRequest(new { detail = "Ya existe un votante con ese CI." });
+
+
             if (dto.FotoCIanverso != null)
             {
                 helper.EliminarImagen(votante.FotoCIanverso);
@@ -98,11 +102,10 @@ namespace bk_sys1_padron_electoral2.Controllers
                 helper.EliminarImagen(votante.FotoVotante);
                 votante.FotoVotante = await helper.GuardarImagen(dto.FotoVotante);
             }
-
+            
+            
             await _context.SaveChangesAsync();
-            //notificar al sistema 2 que se ha actualizado un votante
-            //await RegistrarVotanteEnSistema2Async(id, votante.Lat, votante.Lng, votante.RecintoId);
-
+         
             try
             {
                 await RegistrarVotanteEnSistema2Async(
@@ -147,6 +150,10 @@ namespace bk_sys1_padron_electoral2.Controllers
                 FotoVotante = await helper.GuardarImagen(dto.FotoVotante)
             };
 
+            var existe = await _context.Votante.AnyAsync(v => v.CI == dto.CI); //validad CI 
+            if (existe) return BadRequest(new { detail = "Ya existe un votante con ese CI." });
+
+
             _context.Votante.Add(votante);
             await _context.SaveChangesAsync();
 
@@ -165,7 +172,7 @@ namespace bk_sys1_padron_electoral2.Controllers
             {
                 _logger.LogError(ex, "Fallo al notificar Sistema2 para votante {VotanteId}", votante.Id);
                 // devolvemos 502 Bad Gateway para indicar problema al conectar con el servicio externo
-                return StatusCode(502, new { detail = "Votante actualizado, pero falló la notificación al sistema electoral, verifique si la seccion seleccionada es correcta" });
+                return StatusCode(502, new { detail = "Votante Creado o actualizado, pero falló la notificación al sistema electoral, verifique si las coordenadas entran en alguna seccion valida, edite su ubicacion" });
             }
            
             return CreatedAtAction(nameof(GetVotante), new { id = votante.Id }, votante);

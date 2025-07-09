@@ -1,3 +1,3 @@
 #from .registroVotante import RegistrarVotanteAPIView
 from .participacion_viewset import ParticipacionViewSet
-from .orquestador_jurados import OrquestadorJuradoViewSet
+from .orquestador_jurados import JuradoMesaViewSet

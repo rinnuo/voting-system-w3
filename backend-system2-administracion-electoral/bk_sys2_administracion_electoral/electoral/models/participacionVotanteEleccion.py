@@ -1,7 +1,7 @@
 from django.db import models
 
 class ParticipacionVotanteEleccion(models.Model):
-    votante_id = models.UUIDField()   # mismo GUID que genera Sistema 1
+    votante_id = models.UUIDField(unique=True)   # mismo GUID que genera Sistema 1
     nombre_completo = models.CharField(
         max_length=200,
         blank=True,

@@ -2,8 +2,11 @@ from django.db import models
 from electoral.models import MesaElectoral
 
 class JuradoMesa(models.Model):
-    participante_id = models.UUIDField(
-        help_text="UUID de ParticipacionVotanteEleccion.votante_id"
+    participante_id = models.ForeignKey(
+        'ParticipacionVotanteEleccion',
+        on_delete=models.CASCADE,
+        to_field='votante_id',
+        db_column='participante_id'
     )
     mesa = models.ForeignKey(
         'MesaElectoral',

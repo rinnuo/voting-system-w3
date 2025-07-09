@@ -16,7 +16,7 @@ class ParticipacionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model  = ParticipacionVotanteEleccion
-        fields = ['eleccionId','seccionId', 'recintoId','recintoNombre', 'mesaNumero','nombreCompleto', 'uuid']
+        fields = ['uuid', 'eleccionId','seccionId', 'recintoId','recintoNombre', 'mesaNumero','nombreCompleto']
 
     def get_mesaNumero(self, obj):
         return obj.mesa.numero if obj.mesa else None

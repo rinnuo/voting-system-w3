@@ -1,17 +1,17 @@
-# electoral/serializers.py
-from django.utils.decorators import method_decorator
+import string
+
+from django.db.models.functions import math
 from rest_framework import serializers
-# electoral/apis/registrar_votante.py
-from rest_framework import viewsets
 from rest_framework.decorators import action
+from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.viewsets import GenericViewSet
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from electoral.models.participacionVotanteEleccion import ParticipacionVotanteEleccion
+from electoral.models import (
+    ParticipacionVotanteEleccion, Eleccion,
+    Seccion, Recinto, MesaElectoral
+)
 from shapely.geometry import Point, Polygon
-from electoral.models import Seccion, Eleccion, Recinto
+from electoral.models import Seccion
 
 class RegistrarVotanteSerializer(serializers.Serializer):
     votante_id = serializers.UUIDField()
@@ -20,13 +20,6 @@ class RegistrarVotanteSerializer(serializers.Serializer):
     nombre_completo = serializers.CharField()
     recinto_id = serializers.IntegerField(required=False)  # opcional
 
-
-
-from shapely.geometry import Point, Polygon
-from electoral.models import Seccion
-
-from shapely.geometry import Point, Polygon
-from electoral.models import Seccion
 
 def detectar_seccion(lat: float, lng: float) -> Seccion | None:
     punto = Point(lng, lat)
@@ -45,15 +38,6 @@ def detectar_seccion(lat: float, lng: float) -> Seccion | None:
     _, seccion_min = min(candidatos, key=lambda x: x[0])
     return seccion_min
 
-# electoral/apis/registrar_votante.py
-from rest_framework.decorators import action
-from rest_framework.viewsets import GenericViewSet
-from rest_framework.response import Response
-from rest_framework import status
-from electoral.models import (
-    ParticipacionVotanteEleccion, Eleccion,
-    Seccion, Recinto, MesaElectoral
-)
 
 def secciones_cubren(lat, lng):
     punto = Point(lng, lat)
@@ -68,7 +52,7 @@ def secciones_cubren(lat, lng):
 # helper para extraer apellido paterno del campo NombreCompleto xddddd
 def apellido_paterno(nombre_completo: str) -> str:
     partes = nombre_completo.strip().split()
-    return partes[-2].lower() if len(partes) >= 2 else partes[-1].lower() #cogemos la penultima palabra
+    return partes[-1].lower()  # siempre tomo la última palabra
 
 class VotanteViewSet(GenericViewSet):
     authentication_classes = []
@@ -150,16 +134,35 @@ class VotanteViewSet(GenericViewSet):
                       .filter(recinto=recinto, eleccion=ele)
                       .order_by("numero")
                 )
+                # —— DEBUG ——
+                print(">>> Mesas disponibles en registro:", [m.numero for m in mesas])
+                print(">>> Count mesas:", len(mesas))
+                # ——————————
+                import string
+                from math import ceil
 
-                # construimos la lista ordenada por apellido_paterno
-                group = ParticipacionVotanteEleccion.objects.filter(
-                    eleccion=ele, recinto=recinto
-                ).order_by("apellido_paterno", "votante_id")
+                # 1) número de mesas
+                num_mesas = len(mesas)
 
-                vot_ids = list(group.values_list("votante_id", flat=True))
-                idx     = vot_ids.index(vid)
+                # 2) dividimos el alfabeto en trozos iguales
+                alf = list(string.ascii_uppercase)
+                chunk = ceil(len(alf) / num_mesas)
+                rangos = [alf[i * chunk:(i + 1) * chunk] for i in range(num_mesas)]
 
-                p.mesa = mesas[idx % len(mesas)]
+                for i, r in enumerate(rangos): #imprimemos para que se vea el rango de letras por mesa
+                    print(f"Mesa {i + 1}: {r}")
+
+                # 3) inicial de apellido en mayúscula
+                ini = p.apellido_paterno.strip()[0].upper() if p.apellido_paterno else None
+
+                # 4) buscamos en qué rango cae
+                pos = next(
+                    (i for i, letras in enumerate(rangos) if ini in letras),
+                    num_mesas - 1
+                )
+
+                # 5) asignamos esa mesa
+                p.mesa = mesas[pos]
                 p.save(update_fields=["mesa"])
 
             # 6) Preparamos la respuesta
