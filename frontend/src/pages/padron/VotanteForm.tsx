@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import type { Votante } from "../../models/votante";
 import { PadronService } from "../../services/PadronService";
+import { EleccionService } from "../../services/EleccionService";
+import type { Seccion } from "../../models/seccion";
 import PageContainer from "../../components/PageContainer";
 import Form from "../../components/Form";
 import LeafletMap from "../../components/LeafletMap";
@@ -26,6 +28,13 @@ const VotanteForm = () => {
   const [success, setSuccess] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(!id);
+  const [secciones, setSecciones] = useState<Seccion[]>([]);
+
+  useEffect(() => {
+    EleccionService.listSecciones()
+      .then(setSecciones)
+      .catch(() => console.error("Error al cargar secciones"));
+  }, []);
 
   useEffect(() => {
     if (id) {
@@ -100,6 +109,11 @@ const VotanteForm = () => {
   const safeLat = parseFloat(form.lat);
   const safeLng = parseFloat(form.lng);
 
+  const polygonData = secciones.map((s) => ({
+    nombre: s.nombre,
+    poligono: s.poligono.map(([lng, lat]) => [lat, lng] as [number, number]),
+  }));
+
   if (!dataLoaded) {
     return (
       <div className="flex justify-center items-center h-96 text-gray-300">
@@ -107,7 +121,7 @@ const VotanteForm = () => {
       </div>
     );
   }
-
+  console.log("Polygons", polygonData);
   return (
     <PageContainer
       title={id ? "Editar Votante" : "Crear Votante"}
@@ -127,11 +141,7 @@ const VotanteForm = () => {
               disabled={loading}
               className="w-full"
             >
-              {loading
-                ? "Guardando..."
-                : id
-                ? "Guardar"
-                : "Crear"}
+              {loading ? "Guardando..." : id ? "Guardar" : "Crear"}
             </Button>
           }
           className="max-w-md"
@@ -156,6 +166,8 @@ const VotanteForm = () => {
                 lng: lng.toFixed(6).toString(),
               }))
             }
+            polygons={polygonData}
+            
           />
         </div>
       }
