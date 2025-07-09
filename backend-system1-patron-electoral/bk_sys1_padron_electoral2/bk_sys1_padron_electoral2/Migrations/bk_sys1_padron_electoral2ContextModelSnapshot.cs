@@ -66,7 +66,7 @@ namespace bk_sys1_padron_electoral2.Migrations
                     b.HasIndex("CI")
                         .IsUnique();
 
-                    b.ToTable("Votante");
+                    b.ToTable("Votante", (string)null);
                 });
 #pragma warning restore 612, 618
         }

@@ -35,22 +35,46 @@ const UserForm = () => {
     }
   }, [id]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const fields = [
+    { name: "username", label: "Usuario", required: true },
+    ...(!id
+      ? [
+          {
+            name: "password",
+            label: "Contraseña",
+            type: "password",
+            required: true,
+          },
+        ]
+      : []),
+    { name: "first_name", label: "Nombre", required: true },
+    { name: "last_name", label: "Apellido", required: true },
+    { name: "email", label: "Email", type: "email", required: true },
+    {
+      name: "role",
+      label: "Rol",
+      type: "select",
+      required: true,
+      options: [
+        { label: "SUPER", value: "SUPER" },
+        { label: "PADRON", value: "PADRON" },
+        { label: "ELECCION", value: "ELECCION" },
+        { label: "JURADO", value: "JURADO" },
+      ],
+    },
+  ];
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (data: Record<string, any>) => {
     setError(null);
     setSuccess(null);
     setLoading(true);
     try {
       if (id) {
-        const { password, ...updateData } = form;
+        const { password, ...updateData } = data;
         await UserService.update(Number(id), updateData);
         setSuccess("Usuario actualizado correctamente.");
       } else {
-        await UserService.create(form as Omit<User, "id"> & { password: string });
+        await UserService.create(data as Omit<User, "id"> & { password: string });
         setSuccess("Usuario creado correctamente.");
       }
       setTimeout(() => navigate("/users/list"), 1000);
@@ -61,87 +85,22 @@ const UserForm = () => {
     }
   };
 
+  const handleFormChange = (updated: Partial<typeof form>) => {
+    setForm((prev) => ({ ...prev, ...updated }));
+  };
+
   return (
     <PageContainer
       title={id ? "Editar Usuario" : "Crear Usuario"}
       left={
         <Form
+          fields={fields}
+          values={form}
+          onChange={handleFormChange}
           onSubmit={handleSubmit}
           error={error}
           success={success}
           loading={loading}
-          fields={
-            <>
-              <div>
-                <label className="block text-sm font-medium text-gray-200">Usuario</label>
-                <input
-                  name="username"
-                  value={form.username}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                />
-              </div>
-              {!id && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-200">Contraseña</label>
-                  <input
-                    name="password"
-                    type="password"
-                    value={form.password || ""}
-                    onChange={handleChange}
-                    required
-                    className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                  />
-                </div>
-              )}
-              <div>
-                <label className="block text-sm font-medium text-gray-200">Nombre</label>
-                <input
-                  name="first_name"
-                  value={form.first_name}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-200">Apellido</label>
-                <input
-                  name="last_name"
-                  value={form.last_name}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-200">Email</label>
-                <input
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-200">Rol</label>
-                <select
-                  name="role"
-                  value={form.role}
-                  onChange={handleChange}
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                >
-                  <option value="SUPER">SUPER</option>
-                  <option value="PADRON">PADRON</option>
-                  <option value="ELECCION">ELECCION</option>
-                  <option value="JURADO">JURADO</option>
-                </select>
-              </div>
-            </>
-          }
           actions={
             <Button
               type="submit"
@@ -149,11 +108,7 @@ const UserForm = () => {
               disabled={loading}
               className="w-full"
             >
-              {loading
-                ? "Guardando..."
-                : id
-                  ? "Guardar"
-                  : "Crear"}
+              {loading ? (id ? "Guardando..." : "Creando...") : id ? "Guardar" : "Crear"}
             </Button>
           }
           className="max-w-md"

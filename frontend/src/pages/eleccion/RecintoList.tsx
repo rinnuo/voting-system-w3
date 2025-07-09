@@ -4,7 +4,7 @@ import type { Recinto } from "../../models/recinto";
 import { EleccionService } from "../../services/EleccionService";
 import List from "../../components/List";
 import PageContainer from "../../components/PageContainer";
-import RecintoLeafletMap from "../../components/RecintoLeafletMap";
+import LeafletMap from "../../components/LeafletMap";
 
 const RecintoList = () => {
   const [recintos, setRecintos] = useState<Recinto[]>([]);
@@ -49,6 +49,7 @@ const RecintoList = () => {
     { header: "Nombre", accessor: "nombre" as keyof Recinto },
     { header: "Latitud", accessor: "lat" as keyof Recinto },
     { header: "Longitud", accessor: "lng" as keyof Recinto },
+    { header: "Sección", accessor: "seccion" as keyof Recinto },
   ];
 
   return (
@@ -68,7 +69,7 @@ const RecintoList = () => {
       }
       right={
         <div className="h-full w-[400px] flex items-center">
-          <RecintoLeafletMap
+          <LeafletMap
             markers={recintos.map((r) => ({
               lat: r.lat,
               lng: r.lng,

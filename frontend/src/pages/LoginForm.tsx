@@ -7,18 +7,35 @@ import Button from "../components/Button";
 import { URLS } from "../navigation/CONSTANTS";
 
 const LoginForm = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [form, setForm] = useState({ username: "", password: "" });
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const fields = [
+    {
+      name: "username",
+      label: "Usuario",
+      type: "text",
+      required: true,
+    },
+    {
+      name: "password",
+      label: "Contraseña",
+      type: "password",
+      required: true,
+    },
+  ];
+
+  const handleFormChange = (updated: Partial<typeof form>) => {
+    setForm((prev) => ({ ...prev, ...updated }));
+  };
+
+  const handleSubmit = async (data: typeof form) => {
     setError(null);
     setLoading(true);
     try {
-      await AuthService.login(username, password);
+      await AuthService.login(data.username, data.password);
       const user = JSON.parse(localStorage.getItem("user") || "{}");
       switch (user.role) {
         case "SUPER":
@@ -46,48 +63,14 @@ const LoginForm = () => {
       title="Iniciar Sesión"
       left={
         <Form
+          fields={fields}
+          values={form}
+          onChange={handleFormChange}
           onSubmit={handleSubmit}
           error={error}
           loading={loading}
-          fields={
-            <>
-              <div>
-                <label htmlFor="username" className="block text-sm font-medium text-gray-200">
-                  Usuario
-                </label>
-                <input
-                  id="username"
-                  type="text"
-                  autoComplete="username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-200">
-                  Contraseña
-                </label>
-                <input
-                  id="password"
-                  type="password"
-                  autoComplete="current-password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                  required
-                />
-              </div>
-            </>
-          }
           actions={
-            <Button
-              type="submit"
-              variant="success"
-              disabled={loading}
-              className="w-full"
-            >
+            <Button type="submit" variant="success" disabled={loading} className="w-full">
               {loading ? "Ingresando..." : "Ingresar"}
             </Button>
           }

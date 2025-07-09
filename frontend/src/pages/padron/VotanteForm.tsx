@@ -4,13 +4,15 @@ import type { Votante } from "../../models/votante";
 import { PadronService } from "../../services/PadronService";
 import PageContainer from "../../components/PageContainer";
 import Form from "../../components/Form";
+import LeafletMap from "../../components/LeafletMap";
 import Button from "../../components/Button";
 
 const initialState: Omit<Votante, "id"> = {
   ci: "",
   nombreCompleto: "",
   direccion: "",
-  recintoId: 0,
+  lat: "-17.783363",
+  lng: "-63.182158",
   fotoCIanverso: null,
   fotoCIreverso: null,
   fotoVotante: null,
@@ -34,7 +36,8 @@ const VotanteForm = () => {
             ci: votante.ci,
             nombreCompleto: votante.nombreCompleto,
             direccion: votante.direccion,
-            recintoId: votante.recintoId,
+            lat: votante.lat.toString(),
+            lng: votante.lng.toString(),
             fotoCIanverso: null,
             fotoCIreverso: null,
             fotoVotante: null,
@@ -49,32 +52,22 @@ const VotanteForm = () => {
     }
   }, [id]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const handleChange = (updated: Partial<Votante>) => {
+    setForm((prev) => ({ ...prev, ...updated }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, files } = e.target;
-    if (files && files.length > 0) {
-      setForm((prev) => ({
-        ...prev,
-        [name]: files[0],
-      }));
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (data: Record<string, any>) => {
     setError(null);
     setSuccess(null);
     setLoading(true);
 
+    const payload = {
+      ...data,
+      lat: parseFloat(data.lat),
+      lng: parseFloat(data.lng),
+    };
+
     try {
-      const payload = { ...form };
       if (id) {
         if (!payload.fotoCIanverso) delete payload.fotoCIanverso;
         if (!payload.fotoCIreverso) delete payload.fotoCIreverso;
@@ -82,7 +75,7 @@ const VotanteForm = () => {
         await PadronService.updateVotante(String(id), payload);
         setSuccess("Votante actualizado correctamente.");
       } else {
-        await PadronService.createVotante(form);
+        await PadronService.createVotante(payload);
         setSuccess("Votante creado correctamente.");
       }
       setTimeout(() => navigate("/votantes/list"), 1000);
@@ -93,7 +86,21 @@ const VotanteForm = () => {
     }
   };
 
-   if (!dataLoaded) {
+  const fields = [
+    { name: "ci", label: "CI", required: true },
+    { name: "nombreCompleto", label: "Nombre Completo", required: true },
+    { name: "direccion", label: "Dirección", required: true },
+    { name: "fotoCIanverso", label: "Foto CI Anverso", type: "file" },
+    { name: "fotoCIreverso", label: "Foto CI Reverso", type: "file" },
+    { name: "fotoVotante", label: "Foto del Votante", type: "file" },
+    { name: "lat", label: "Latitud", type: "number", required: true },
+    { name: "lng", label: "Longitud", type: "number", required: true },
+  ];
+
+  const safeLat = parseFloat(form.lat);
+  const safeLng = parseFloat(form.lng);
+
+  if (!dataLoaded) {
     return (
       <div className="flex justify-center items-center h-96 text-gray-300">
         Cargando datos del Votante...
@@ -106,96 +113,13 @@ const VotanteForm = () => {
       title={id ? "Editar Votante" : "Crear Votante"}
       left={
         <Form
+          fields={fields}
+          values={form}
+          onChange={handleChange}
           onSubmit={handleSubmit}
           error={error}
           success={success}
           loading={loading}
-          fields={
-            <>
-              <div>
-                <label className="block text-sm font-medium text-gray-200">
-                  CI
-                </label>
-                <input
-                  name="ci"
-                  value={form.ci}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-200">
-                  Nombre Completo
-                </label>
-                <input
-                  name="nombreCompleto"
-                  value={form.nombreCompleto}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-200">
-                  Dirección
-                </label>
-                <input
-                  name="direccion"
-                  value={form.direccion}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-200">
-                  Recinto&nbsp;ID
-                </label>
-                <input
-                  name="recintoId"
-                  type="number"
-                  value={form.recintoId.toString()}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-200">
-                  Foto CI Anverso
-                </label>
-                <input
-                  name="fotoCIanverso"
-                  type="file"
-                  onChange={handleFileChange}
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-200">
-                  Foto CI Reverso
-                </label>
-                <input
-                  name="fotoCIreverso"
-                  type="file"
-                  onChange={handleFileChange}
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-200">
-                  Foto del Votante
-                </label>
-                <input
-                  name="fotoVotante"
-                  type="file"
-                  onChange={handleFileChange}
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                />
-              </div>
-            </>
-          }
           actions={
             <Button
               type="submit"
@@ -212,6 +136,28 @@ const VotanteForm = () => {
           }
           className="max-w-md"
         />
+      }
+      right={
+        <div className="h-full w-[400px] flex items-center">
+          <LeafletMap
+            markers={[{ lat: safeLat, lng: safeLng }]}
+            isEditable={true}
+            onMapClick={(lat, lng) =>
+              setForm((prev) => ({
+                ...prev,
+                lat: lat.toFixed(6).toString(),
+                lng: lng.toFixed(6).toString(),
+              }))
+            }
+            onMarkerDrag={(lat, lng) =>
+              setForm((prev) => ({
+                ...prev,
+                lat: lat.toFixed(6).toString(),
+                lng: lng.toFixed(6).toString(),
+              }))
+            }
+          />
+        </div>
       }
     />
   );

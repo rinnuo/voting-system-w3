@@ -3,4 +3,5 @@ export interface Recinto {
   nombre: string;
   lat: number;
   lng: number;
+  seccion: number;
 }

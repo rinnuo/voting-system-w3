@@ -4,25 +4,28 @@ import type { Recinto } from "../../models/recinto";
 import { EleccionService } from "../../services/EleccionService";
 import PageContainer from "../../components/PageContainer";
 import Form from "../../components/Form";
-import Button from "../../components/Button";
-import RecintoLeafletMap from "../../components/RecintoLeafletMap";
+import LeafletMap from "../../components/LeafletMap";
 
 const initialState: Omit<Recinto, "id"> = {
   nombre: "",
   lat: "-17.783363",
   lng: "-63.182158",
+  seccion: 1,
 };
 
 const RecintoForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [form, setForm] = useState(initialState);
+  const [secciones, setSecciones] = useState<{ id: number; nombre: string }[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(!id);
 
   useEffect(() => {
+    EleccionService.listSecciones().then(setSecciones);
+
     if (id) {
       setLoading(true);
       EleccionService.getRecinto(Number(id))
@@ -31,6 +34,7 @@ const RecintoForm = () => {
             nombre: recinto.nombre,
             lat: recinto.lat.toString(),
             lng: recinto.lng.toString(),
+            seccion: recinto.seccion,
           });
           setDataLoaded(true);
         })
@@ -42,24 +46,46 @@ const RecintoForm = () => {
     }
   }, [id]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  const fields = [
+    {
+      name: "nombre",
+      label: "Nombre",
+      required: true,
+    },
+    {
+      name: "lat",
+      label: "Latitud",
+      type: "number",
+      required: true,
+    },
+    {
+      name: "lng",
+      label: "Longitud",
+      type: "number",
+      required: true,
+    },
+    {
+      name: "seccion",
+      label: "Sección",
+      type: "select",
+      required: true,
+      options: secciones.map((s) => ({
+        label: s.nombre,
+        value: s.id,
+      })),
+    },
+  ];
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (data: Record<string, any>) => {
     setError(null);
     setSuccess(null);
     setLoading(true);
 
     const payload = {
-      ...form,
-      lat: typeof form.lat === "number" ? Number(form.lat.toFixed(6)) : form.lat,
-      lng: typeof form.lng === "number" ? Number(form.lng.toFixed(6)) : form.lng,
+      ...data,
+      lat: parseFloat(data.lat),
+      lng: parseFloat(data.lng),
+      seccion: parseInt(data.seccion),
     };
 
     try {
@@ -78,6 +104,10 @@ const RecintoForm = () => {
     }
   };
 
+  const handleFormChange = (updated: Partial<Recinto>) => {
+    setForm((prev) => ({ ...prev, ...updated }));
+  };
+
   const safeLat = parseFloat(form.lat);
   const safeLng = parseFloat(form.lng);
 
@@ -94,72 +124,35 @@ const RecintoForm = () => {
       title={id ? "Editar Recinto" : "Crear Recinto"}
       left={
         <Form
+          fields={fields}
+          values={form}
+          onChange={handleFormChange}
           onSubmit={handleSubmit}
           error={error}
           success={success}
           loading={loading}
-          fields={
-            <>
-              <div>
-                <label className="block text-sm font-medium text-gray-200">Nombre</label>
-                <input
-                  name="nombre"
-                  value={form.nombre}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-200">Latitud</label>
-                <input
-                  name="lat"
-                  type="number"
-                  step="any"
-                  value={form.lat}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-200">Longitud</label>
-                <input
-                  name="lng"
-                  type="number"
-                  step="any"
-                  value={form.lng}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 w-full rounded border border-gray-700 bg-gray-800 text-gray-100 px-3 py-2"
-                />
-              </div>
-            </>
-          }
-          actions={
-            <Button
-              type="submit"
-              variant="success"
-              disabled={loading}
-              className="w-full"
-            >
-              {loading
-                ? "Guardando..."
-                : id
-                  ? "Guardar"
-                  : "Crear"}
-            </Button>
-          }
           className="max-w-md"
         />
       }
       right={
         <div className="h-full w-[400px] flex items-center">
-          <RecintoLeafletMap
-            markers={[{ lat: !isNaN(safeLat) ? safeLat : -17.783, lng: !isNaN(safeLng) ? safeLng : -63.18 }]}
+          <LeafletMap
+            markers={[{ lat: safeLat, lng: safeLng }]}
             isEditable={true}
-            onMapClick={(lat, lng) => setForm((prev) => ({ ...prev, lat: lat.toString(), lng: lng.toString() }))}
-            onMarkerDrag={(lat, lng) => setForm((prev) => ({ ...prev, lat: lat.toString(), lng: lng.toString() }))}
+            onMapClick={(lat, lng) =>
+              setForm((prev) => ({
+                ...prev,
+                lat: lat.toFixed(6).toString(),
+                lng: lng.toFixed(6).toString(),
+              }))
+            }
+            onMarkerDrag={(lat, lng) =>
+              setForm((prev) => ({
+                ...prev,
+                lat: lat.toFixed(6).toString(),
+                lng: lng.toFixed(6).toString(),
+              }))
+            }
           />
         </div>
       }

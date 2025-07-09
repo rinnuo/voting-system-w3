@@ -3,15 +3,15 @@ export interface Votante {
   ci: string;
   nombreCompleto: string;
   direccion: string;
-  recintoId: number;
   fotoCIanverso?: File | null;
   fotoCIreverso?: File | null;
   fotoVotante?: File | null;
+  lat: number;
+  lng: number;
 }
 
 export interface VotantePublico {
   ci: string;
   nombreCompleto: string;
-  recintoId: number;
   nombreRecinto: string;
 }

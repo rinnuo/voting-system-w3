@@ -19,7 +19,7 @@ interface MarkerData {
   id?: number;
 }
 
-interface RecintoMapProps {
+interface LeafletMapProps {
   markers: MarkerData[];
   isEditable?: boolean;
   onMapClick?: (lat: number, lng: number) => void;
@@ -42,7 +42,7 @@ const ClickHandler: React.FC<{
   return null;
 };
 
-const RecintoLeafletMap: React.FC<RecintoMapProps> = ({
+const LeafletMap: React.FC<LeafletMapProps> = ({
   markers,
   isEditable = false,
   onMapClick,
@@ -95,4 +95,4 @@ const RecintoLeafletMap: React.FC<RecintoMapProps> = ({
   );
 };
 
-export default RecintoLeafletMap;
+export default LeafletMap;
