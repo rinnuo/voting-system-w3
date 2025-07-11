@@ -19,12 +19,14 @@ import CargoForm from "../pages/eleccion/CargoForm";
 import EleccionList from "../pages/eleccion/EleccionList";
 import EleccionForm from "../pages/eleccion/EleccionForm";
 import ParticipacionesPorEleccion from "../pages/eleccion/ParticipacionesPorEleccion";
+import JuradosPorEleccion from "../pages/eleccion/JuradosPorEleccion";
 import MesaList from "../pages/eleccion/MesaList";
 import MesaForm from "../pages/eleccion/MesaForm";
 import PartidoList from "../pages/eleccion/PartidoList";
 import PartidoForm from "../pages/eleccion/PartidoForm";
 import PapeletaList from "../pages/votacion/PapeletaList";
 import VotoList from "../pages/votacion/VotoList";
+import VotoForm from "../pages/votacion/VotoForm";
 import ResultadosPublicos from "../pages/votacion/ResultadosPublicos";
 import PageNotFound from "../pages/PageNotFound";
 
@@ -64,6 +66,7 @@ const RouterConfig = () => (
       <Route path={URLS.ELECCIONES.CREATE} element={<RoleRoute allowedRoles={["ELECCION"]}><EleccionForm /></RoleRoute>} />
       <Route path={URLS.ELECCIONES.EDIT} element={<RoleRoute allowedRoles={["ELECCION"]}><EleccionForm /></RoleRoute>} />
       <Route path={URLS.ELECCIONES.PARTICIPACIONES} element={<RoleRoute allowedRoles={["ELECCION"]}><ParticipacionesPorEleccion /></RoleRoute>} />
+      <Route path={URLS.ELECCIONES.JURADOS} element={<RoleRoute allowedRoles={["ELECCION"]}><JuradosPorEleccion /></RoleRoute>} />
 
       <Route path={URLS.MESAS.LIST} element={<RoleRoute allowedRoles={["ELECCION"]}><MesaList /></RoleRoute>} />
       <Route path={URLS.MESAS.CREATE} element={<RoleRoute allowedRoles={["ELECCION"]}><MesaForm /></RoleRoute>} />
@@ -76,6 +79,7 @@ const RouterConfig = () => (
       <Route path={URLS.PAPELETAS.LIST} element={<RoleRoute allowedRoles={["JURADO"]}><PapeletaList /></RoleRoute>} />
 
       <Route path={URLS.VOTOS.LIST} element={<RoleRoute allowedRoles={["JURADO"]}><VotoList /></RoleRoute>} />
+      <Route path={URLS.VOTOS.VOTAR} element={<RoleRoute allowedRoles={["JURADO"]}><VotoForm /></RoleRoute>} />
       
       <Route path="*" element={<PageNotFound/>} />
     </Routes>

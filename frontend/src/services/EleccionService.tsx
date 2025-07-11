@@ -7,6 +7,7 @@ import type { Cargo } from "../models/cargo";
 import type { Partido } from "../models/partido";
 import type { Candidatura } from "../models/candidatura";
 import type { Participacion } from "../models/participacion";
+import type { Jurado } from "../models/jurado";
 
 export class EleccionService {
   static async listRecintos(): Promise<Recinto[]> {
@@ -218,6 +219,11 @@ export class EleccionService {
 
   static async listParticipacionesPorEleccion(eleccion: number): Promise<Participacion[]> {
     const res = await eleccionApi.get<Participacion[]>(`admin/participaciones/?eleccion=${eleccion}`);
+    return res.data;
+  }
+
+  static async listJuradosByEleccion(eleccion: number): Promise<Jurado[]> {
+    const res = await eleccionApi.get<Jurado[]>(`admin/jurados/?eleccion=${eleccion}`);
     return res.data;
   }
 }

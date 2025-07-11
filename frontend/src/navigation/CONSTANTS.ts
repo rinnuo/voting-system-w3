@@ -36,6 +36,7 @@ export const URLS = {
         CREATE: "/elecciones/create",
         EDIT: "/elecciones/:id",
         PARTICIPACIONES: "/elecciones/:id/participaciones",
+        JURADOS: "/elecciones/:id/jurados",
     },
     MESAS: {
         LIST: "/mesas/list",
@@ -52,6 +53,7 @@ export const URLS = {
     },
     VOTOS: {
         LIST: "/votos/list",
+        VOTAR: "/votar/:id",
     },
     RESULTADOS: "/resultados",
 }
