@@ -1,5 +1,5 @@
 export interface Votante {
-  id: number;
+  id: string;
   ci: string;
   nombreCompleto: string;
   direccion: string;
@@ -14,4 +14,5 @@ export interface VotantePublico {
   ci: string;
   nombreCompleto: string;
   nombreRecinto: string;
+  mesaNumero: number;
 }

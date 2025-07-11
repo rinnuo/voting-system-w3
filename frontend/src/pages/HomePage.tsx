@@ -66,6 +66,8 @@ const HomePage = () => {
             <div className="rounded-lg border border-gray-700 bg-gray-800 p-4">
               <p className="text-lg font-semibold text-green-400">{data.nombreCompleto}</p>
               <p className="text-gray-300">CI: {data.ci}</p>
+              <p className="text-lg font-semibold text-green-400">{data.nombreRecinto}</p>
+              <p className="text-gray-300">Mesa: {data.mesaNumero}</p>
             </div>
           )}
 

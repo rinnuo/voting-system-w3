@@ -12,6 +12,17 @@ import SeccionList from "../pages/eleccion/SeccionList";
 import SeccionForm from "../pages/eleccion/SeccionForm";
 import RecintoList from "../pages/eleccion/RecintoList";
 import RecintoForm from "../pages/eleccion/RecintoForm";
+import CandidaturaList from "../pages/eleccion/CandidaturaList";
+import CandidaturaForm from "../pages/eleccion/CandidaturaForm";
+import CargoList from "../pages/eleccion/CargoList";
+import CargoForm from "../pages/eleccion/CargoForm";
+import EleccionList from "../pages/eleccion/EleccionList";
+import EleccionForm from "../pages/eleccion/EleccionForm";
+import ParticipacionesPorEleccion from "../pages/eleccion/ParticipacionesPorEleccion";
+import MesaList from "../pages/eleccion/MesaList";
+import MesaForm from "../pages/eleccion/MesaForm";
+import PartidoList from "../pages/eleccion/PartidoList";
+import PartidoForm from "../pages/eleccion/PartidoForm";
 import PageNotFound from "../pages/PageNotFound";
 
 const RouterConfig = () => (
@@ -36,6 +47,27 @@ const RouterConfig = () => (
       <Route path={URLS.RECINTOS.LIST} element={<RoleRoute allowedRoles={["ELECCION"]}><RecintoList /></RoleRoute>} />
       <Route path={URLS.RECINTOS.CREATE} element={<RoleRoute allowedRoles={["ELECCION"]}><RecintoForm /></RoleRoute>} />
       <Route path={URLS.RECINTOS.EDIT} element={<RoleRoute allowedRoles={["ELECCION"]}><RecintoForm /></RoleRoute>} />
+
+      <Route path={URLS.CANDIDATURAS.LIST} element={<RoleRoute allowedRoles={["ELECCION"]}><CandidaturaList /></RoleRoute>} />
+      <Route path={URLS.CANDIDATURAS.CREATE} element={<RoleRoute allowedRoles={["ELECCION"]}><CandidaturaForm /></RoleRoute>} />
+      <Route path={URLS.CANDIDATURAS.EDIT} element={<RoleRoute allowedRoles={["ELECCION"]}><CandidaturaForm /></RoleRoute>} />
+
+      <Route path={URLS.CARGOS.LIST} element={<RoleRoute allowedRoles={["ELECCION"]}><CargoList /></RoleRoute>} />
+      <Route path={URLS.CARGOS.CREATE} element={<RoleRoute allowedRoles={["ELECCION"]}><CargoForm /></RoleRoute>} />
+      <Route path={URLS.CARGOS.EDIT} element={<RoleRoute allowedRoles={["ELECCION"]}><CargoForm /></RoleRoute>} />
+
+      <Route path={URLS.ELECCIONES.LIST} element={<RoleRoute allowedRoles={["ELECCION"]}><EleccionList /></RoleRoute>} />
+      <Route path={URLS.ELECCIONES.CREATE} element={<RoleRoute allowedRoles={["ELECCION"]}><EleccionForm /></RoleRoute>} />
+      <Route path={URLS.ELECCIONES.EDIT} element={<RoleRoute allowedRoles={["ELECCION"]}><ParticipacionesPorEleccion /></RoleRoute>} />
+      <Route path={URLS.ELECCIONES.PARTICIPACIONES} element={<RoleRoute allowedRoles={["ELECCION"]}><ParticipacionesPorEleccion /></RoleRoute>} />
+
+      <Route path={URLS.MESAS.LIST} element={<RoleRoute allowedRoles={["ELECCION"]}><MesaList /></RoleRoute>} />
+      <Route path={URLS.MESAS.CREATE} element={<RoleRoute allowedRoles={["ELECCION"]}><MesaForm /></RoleRoute>} />
+      <Route path={URLS.MESAS.EDIT} element={<RoleRoute allowedRoles={["ELECCION"]}><MesaForm /></RoleRoute>} />
+
+      <Route path={URLS.PARTIDOS.LIST} element={<RoleRoute allowedRoles={["ELECCION"]}><PartidoList /></RoleRoute>} />
+      <Route path={URLS.PARTIDOS.CREATE} element={<RoleRoute allowedRoles={["ELECCION"]}><PartidoForm /></RoleRoute>} />
+      <Route path={URLS.PARTIDOS.EDIT} element={<RoleRoute allowedRoles={["ELECCION"]}><PartidoForm /></RoleRoute>} />
       
       <Route path="*" element={<PageNotFound/>} />
     </Routes>

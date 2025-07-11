@@ -9,7 +9,7 @@ const VotanteList = () => {
 	const [votantes, setVotantes] = useState<Votante[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
-	const [deleting, setDeleting] = useState<number | null>(null);
+	const [deleting, setDeleting] = useState<string | null>(null);
 	const navigate = useNavigate();
 
 	useEffect(() => {

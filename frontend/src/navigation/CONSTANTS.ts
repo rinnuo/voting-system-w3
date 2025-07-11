@@ -21,4 +21,30 @@ export const URLS = {
         CREATE: "/recintos/create",
         EDIT: "/recintos/:id",
     },
+    CANDIDATURAS: {
+        LIST: "/candidaturas/list",
+        CREATE: "/candidaturas/create",
+        EDIT: "/candidaturas/:id",
+    },
+    CARGOS: {
+        LIST: "/cargos/list",
+        CREATE: "/cargos/create",
+        EDIT: "/cargos/:id",
+    },
+    ELECCIONES: {
+        LIST: "/elecciones/list",
+        CREATE: "/elecciones/create",
+        EDIT: "/elecciones/:id",
+        PARTICIPACIONES: "/elecciones/:id/participaciones",
+    },
+    MESAS: {
+        LIST: "/mesas/list",
+        CREATE: "/mesas/create",
+        EDIT: "/mesas/:id",
+    },
+    PARTIDOS: {
+        LIST: "/partidos/list",
+        CREATE: "/partidos/create",
+        EDIT: "/partidos/:id",
+    },
 }

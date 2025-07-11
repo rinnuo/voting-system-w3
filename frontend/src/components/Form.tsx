@@ -4,7 +4,7 @@ import Button from "./Button";
 export interface ListField<T> {
   label: string;
   name: keyof T & string;
-  type?: "text" | "number" | "textarea" | "file" | "select";
+  type?: "text" | "number" | "textarea" | "file" | "select" | "multiselect" | "color";
   options?: { label: string; value: string | number }[];
   required?: boolean;
   className?: string;
@@ -65,7 +65,41 @@ function Form<T>({
             {field.label}
           </label>
 
-          {field.type === "textarea" ? (
+          {field.type === "multiselect" && field.options ? (
+            <select
+              name={field.name}
+              multiple
+              value={(values[field.name] as any[]) || []}
+              onChange={(e) => {
+                const selectedOptions = Array.from(e.target.selectedOptions).map(
+                  (opt) => (typeof opt.value === "string" && !isNaN(Number(opt.value)) ? Number(opt.value) : opt.value)
+                );
+                onChange({ [field.name]: selectedOptions } as Partial<T>);
+              }}
+              required={field.required}
+              className={`mt-1 w-full rounded border border-gray-700 bg-gray-900 text-gray-100 px-3 py-2 ${field.className || ""}`}
+            >
+              {field.options.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+          ) : field.type === "color" ? (
+            <div className="mt-1 flex items-center gap-4">
+              <input
+                name={field.name}
+                type="color"
+                value={values[field.name] as string || "#000000"}
+                onChange={handleChange}
+                required={field.required}
+                className={`h-10 w-16 rounded border border-gray-700 bg-gray-900 ${field.className || ""}`}
+              />
+              <span className="text-sm text-gray-100">
+                {(values[field.name] as string) || "#000000"}
+              </span>
+            </div>
+          ) : field.type === "textarea" ? (
             <textarea
               name={field.name}
               value={values[field.name] as string || ""}

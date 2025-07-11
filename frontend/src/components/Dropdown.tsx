@@ -39,7 +39,7 @@ const Dropdown: React.FC<DropdownProps> = ({ label, children }) => {
       tabIndex={0}
     >
       <span
-        className="text-gray-300 hover:text-white px-3 py-2 rounded focus:outline-none flex items-center gap-2 cursor-pointer select-none"
+        className="text-gray-300 text-sm hover:text-white py-2 rounded focus:outline-none flex items-center gap-1 cursor-pointer select-none"
       >
         {label}
         <span className={`transition-transform ${open ? "rotate-180" : ""}`}>
