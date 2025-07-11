@@ -65,12 +65,18 @@ const EleccionList = () => {
 		{
 			header: "Acciones",
 			accessor: (row: Eleccion) => (
-				<button
-					className="text-blue-400 underline"
-					onClick={() => navigate(`/elecciones/${row.id}/participaciones`)}
-				>
-					Ver Participantes
-				</button>
+				<div className="flex flex-col gap-1">
+          <button
+            className="text-blue-400 underline"
+            onClick={() => navigate(`/elecciones/${row.id}/participaciones`)}>
+            Ver Participantes
+          </button>
+          <button
+            className="text-blue-400 underline"
+            onClick={() => navigate(`/elecciones/${row.id}/jurados`)}>
+            Ver Jurados
+          </button>
+        </div>
 			),
 		}
   ];

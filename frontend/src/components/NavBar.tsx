@@ -114,14 +114,9 @@ const NavBar = () => {
               )}
               {user?.role === 'JURADO' && (
                 <>
-                  <Dropdown label="Votos">
-                    <Link to={URLS.VOTOS.LIST} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
-                      Lista de Votos
-                    </Link>
-                    <Link to={URLS.VOTOS.LIST} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
-                      Votar
-                    </Link>
-                  </Dropdown>
+                  <Link to={URLS.VOTOS.LIST} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
+                    Lista de Votos
+                  </Link>
                   <Link to={URLS.PAPELETAS.LIST} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
                     Lista de Papeletas
                   </Link>

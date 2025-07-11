@@ -3,6 +3,7 @@ import type { Papeleta } from "../../models/papeleta";
 import { VotacionService } from "../../services/VotacionService";
 import List from "../../components/List";
 import PageContainer from "../../components/PageContainer";
+import { Link } from "react-router-dom";
 
 const PapeletaList = () => {
   const [papeletas, setPapeletas] = useState<Papeleta[]>([]);
@@ -62,29 +63,43 @@ const PapeletaList = () => {
     { header: "Habilitada Por", accessor: "habilitada_por" as keyof Papeleta },
     { header: "Fecha Habilitada", accessor: (row: Papeleta) => row.habilitada_en.toLocaleString() },
     { header: "Fecha Votada", accessor: (row: Papeleta) => row.votada_en ? row.votada_en.toLocaleString() : "No votada" },
-    {
-  header: "Acciones",
-  accessor: (row: Papeleta) => {
-    const disabled = habilitandoId === row.id || row.habilitada;
-    return (
-      <button
-        disabled={disabled}
-        onClick={() => handleHabilitar(row)}
-        className={
-          disabled
-            ? "text-gray-400 cursor-default no-underline"
-            : `text-blue-400 underline ${habilitandoId === row.id ? "opacity-50 cursor-not-allowed" : ""}`
-        }
-      >
-        {habilitandoId === row.id
-          ? "Habilitando..."
-          : row.habilitada
-          ? "Habilitada"
-          : "Habilitar"}
-      </button>
-    );
-  },
-},
+    { header: "Acciones",
+      accessor: (row: Papeleta) => {
+        const disabled = habilitandoId === row.id || row.habilitada;
+        return (
+          <button
+            disabled={disabled}
+            onClick={() => handleHabilitar(row)}
+            className={
+              disabled
+                ? "text-gray-400 cursor-default no-underline"
+                : `text-blue-400 underline ${habilitandoId === row.id ? "opacity-50 cursor-not-allowed" : ""}`
+            }
+          >
+            {habilitandoId === row.id
+              ? "Habilitando..."
+              : row.habilitada
+              ? "Habilitada"
+              : "Habilitar"}
+          </button>
+        );
+      },
+    },
+    { header: "Acciones",
+      accessor: (row: Papeleta) => {
+        const votada = !!row.votada_en;
+        return votada ? (
+          <span className="text-green-500 font-semibold">Votado</span>
+        ) : (
+          <Link
+            to={`/votar/${row.id}`}
+            className="text-blue-500 underline hover:text-blue-700"
+          >
+            Votar
+          </Link>
+        );
+      },
+    }
   ];
 
   return (
