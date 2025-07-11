@@ -1,0 +1,2896 @@
+{
+	"info": {
+		"_postman_id": "ff56d018-9eeb-4207-a2f0-7e7838dd1e18",
+		"name": "FINAL web3 voting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38385839",
+		"_collection_link": "https://indigo-group.postman.co/workspace/INDIGO-GROUP-Workspace~8142aab0-26e6-483b-839e-7eed58fad273/collection/38385839-ff56d018-9eeb-4207-a2f0-7e7838dd1e18?action=share&source=collection_link&creator=38385839"
+	},
+	"item": [
+		{
+			"name": "System4 gestion de usuarios",
+			"item": [
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "jurados tests",
+							"item": [
+								{
+									"name": "login sis3 jurados",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "//SUPER admin\r\n/*\r\n{\r\n    \"username\": \"SuperBoss\",\r\n    \"password\": \"root12345\"\r\n\r\n}*/\r\n\r\n//JURADO admin \r\n\r\n{\r\n    \"username\": \"JuradoBoss2\",\r\n    \"password\": \"root12345\"\r\n}\r\n\r\n\r\n//ELECCION admin SIS-2\r\n/*\r\n{\r\n    \"username\": \"SuperElectoral\",\r\n    \"password\": \"root12345\"\r\n}\r\n*/\r\n//PADRON admin SIS-1\r\n{\r\n    \"username\": \"SuperPadron\",\r\n    \"password\": \"root12345\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8004/system4/api/users/login/",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8004",
+											"path": [
+												"system4",
+												"api",
+												"users",
+												"login",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "refresh",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/system4/api/users/refresh/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"system4",
+										"api",
+										"users",
+										"refresh",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login sis2",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "//SUPER admin\r\n/*\r\n{\r\n    \"username\": \"SuperBoss\",\r\n    \"password\": \"root12345\"\r\n\r\n}*/\r\n\r\n//JURADO admin \r\n/*\r\n{\r\n    \"username\": \"JuradoBoss2\",\r\n    \"password\": \"root12345\"\r\n}\r\n*/\r\n\r\n//ELECCION admin SIS-2\r\n{\r\n    \"username\": \"SuperElectoral\",\r\n    \"password\": \"root12345\"\r\n}\r\n\r\n//PADRON admin SIS-1\r\n/*\r\n{\r\n    \"username\": \"SuperPadron\",\r\n    \"password\": \"root12345\"\r\n}\r\n*/",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8004/system4/api/users/login/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8004",
+									"path": [
+										"system4",
+										"api",
+										"users",
+										"login",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login sis4",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "//SUPER admin sistema 4\r\n{\r\n    \"username\": \"SuperBoss\",\r\n    \"password\": \"root12345\"\r\n\r\n}\r\n\r\n//JURADO admin \r\n/*\r\n{\r\n    \"username\": \"JuradoBoss2\",\r\n    \"password\": \"root12345\"\r\n}\r\n*/\r\n/*\r\n//ELECCION admin SIS-2\r\n{\r\n    \"username\": \"SuperElectoral\",\r\n    \"password\": \"root12345\"\r\n}\r\n*/\r\n//PADRON admin SIS-1\r\n/*\r\n{\r\n    \"username\": \"SuperPadron\",\r\n    \"password\": \"root12345\"\r\n}\r\n*/",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8004/system4/api/users/login/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8004",
+									"path": [
+										"system4",
+										"api",
+										"users",
+										"login",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login sis1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "//SUPER admin\r\n/*\r\n{\r\n    \"username\": \"SuperBoss\",\r\n    \"password\": \"root12345\"\r\n\r\n}*/\r\n\r\n//JURADO admin \r\n/*\r\n{\r\n    \"username\": \"JuradoBoss2\",\r\n    \"password\": \"root12345\"\r\n}\r\n*/\r\n\r\n//ELECCION admin SIS-2\r\n/*\r\n{\r\n    \"username\": \"SuperElectoral\",\r\n    \"password\": \"root12345\"\r\n}\r\n*/\r\n//PADRON admin SIS-1\r\n{\r\n    \"username\": \"SuperPadron\",\r\n    \"password\": \"root12345\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8004/system4/api/users/login/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8004",
+									"path": [
+										"system4",
+										"api",
+										"users",
+										"login",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login sis3",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "//SUPER admin\r\n/*\r\n{\r\n    \"username\": \"SuperBoss\",\r\n    \"password\": \"root12345\"\r\n\r\n}*/\r\n\r\n//JURADO admin \r\n\r\n{\r\n    \"username\": \"JuradoBoss2\",\r\n    \"password\": \"root12345\"\r\n}\r\n\r\n\r\n//ELECCION admin SIS-2\r\n/*\r\n{\r\n    \"username\": \"SuperElectoral\",\r\n    \"password\": \"root12345\"\r\n}\r\n*/\r\n//PADRON admin SIS-1\r\n{\r\n    \"username\": \"SuperPadron\",\r\n    \"password\": \"root12345\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8004/system4/api/users/login/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8004",
+									"path": [
+										"system4",
+										"api",
+										"users",
+										"login",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "me",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyMjM5OTg2LCJpYXQiOjE3NTIyMTgzODYsImp0aSI6ImQ3MzdlZTMyZTAyNzQ4NzliYTBkNTdlNWQzYWNmNmZlIiwidXNlcl9pZCI6MSwicm9sZSI6IlNVUEVSIn0.F0sDmgUq2xDpXM3avSvgdWe3bnl7-M4z2-d-eLzSmhA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8004/system4/api/users/me/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8004",
+									"path": [
+										"system4",
+										"api",
+										"users",
+										"me",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "CRUD Users - solo super",
+					"item": [
+						{
+							"name": "New Request",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/system4/api/admin/usuarios/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"system4",
+										"api",
+										"admin",
+										"usuarios",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"JuradoBoss2\",\r\n    \"password\": \"root12345\",\r\n    \"first_name\": \"Jurado\",\r\n    \"last_name\": \"Boss\",\r\n    \"email\": \"juradoboss@test.com\",\r\n    \"role\": \"JURADO\"\r\n}\r\n//\"role\": \"JURADO\" //o ELECCION, PADRON, SUPER\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/system4/api/admin/usuarios/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"system4",
+										"api",
+										"admin",
+										"usuarios",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 2",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"JuradoBoss\"\r\n    \r\n}\r\n//\"role\": \"JURADO\" //o ELECCION, PADRON, SUPER\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8004/system4/api/admin/usuarios/3/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8004",
+									"path": [
+										"system4",
+										"api",
+										"admin",
+										"usuarios",
+										"3",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 3",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n//\"role\": \"JURADO\" //o ELECCION, PADRON, SUPER\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/system4/api/admin/usuarios/4/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"system4",
+										"api",
+										"admin",
+										"usuarios",
+										"4",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyMTk3NTc3LCJpYXQiOjE3NTIxNzU5NzcsImp0aSI6ImE1MzIzOThkOWRlNTRiNDNiY2EzY2I0NThhNTEyZDNjIiwidXNlcl9pZCI6MSwicm9sZSI6IlNVUEVSIn0.5ZRc6m4qmeGWXH9upSqZqab5ESdh3Py6FErMB56SrPs",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyMDYzNjE5LCJpYXQiOjE3NTIwNDIwMTksImp0aSI6IjM2ZDM3NTM4MGZhNzRhMWRiNTBiZjY4M2YwMTc3Njk5IiwidXNlcl9pZCI6MSwicm9sZSI6IlNVUEVSIn0.m_MDxYvRU64OFD4go7dxx7x4jHqkoMlRTRlryeV_xdo",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "System2 admin electoral",
+			"item": [
+				{
+					"name": "Recintos",
+					"item": [
+						{
+							"name": "New Request",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n//\"role\": \"JURADO\" //o ELECCION, PADRON, SUPER\r\n//NO REQUIERE USUARIO"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/recintos/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"recintos",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Unidad Educativa Marista\",\r\n  \"lat\": -17.784123,\r\n  \"lng\": -63.183451,\r\n  \"seccion\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/recintos/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"recintos",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 2",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"UCB - Campus 1\",\r\n  \"lat\": -17.787091,\r\n  \"lng\": -63.197254\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/recintos/3/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"recintos",
+										"3",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 3",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"UCB - Campus 999\",\r\n  \"lat\": -17.787091,\r\n  \"lng\": -63.197254\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/recintos/4/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"recintos",
+										"4",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cargos",
+					"item": [
+						{
+							"name": "New Request",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n//\"role\": \"JURADO\" //o ELECCION, PADRON, SUPER\r\n//NO REQUIERE USUARIO"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/cargos/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"cargos",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Gobernador\",\r\n  \"descripcion\": \"Autoridad ejecutiva regional\",\r\n  \"secciones\": [1]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/cargos/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"cargos",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 2",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Alcalde de Santa Cruz\",\r\n  \"descripcion\": \"Máxima autoridad ejecutiva del municipio\",\r\n  \"eleccion\": 1,\r\n  \"secciones\": [1]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/cargos/1/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"cargos",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 3",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/cargos/1/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"cargos",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "partidos politicos",
+					"item": [
+						{
+							"name": "New Request",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n//\"role\": \"JURADO\" //o ELECCION, PADRON, SUPER\r\n//NO REQUIERE USUARIO"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/partidos/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"partidos",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"partido test\",\r\n  \"sigla\": \"sigla test\",\r\n  \"color\": \"azul\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/partidos/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"partidos",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 2",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Santa Cruz Unido\",\r\n  \"sigla\": \"SCU\",\r\n  \"color\": \"#0055AA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/partidos/2/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"partidos",
+										"2",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 3",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/partidos/1/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"partidos",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "secciones",
+					"item": [
+						{
+							"name": "New Request",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n//\"role\": \"JURADO\" //o ELECCION, PADRON, SUPER\r\n//NO REQUIERE USUARIO"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/secciones/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"secciones",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Sección Distrital Centro\",\r\n  \"descripcion\": \"Zona céntrica de Santa Cruz\",\r\n  \"poligono\": [\r\n    [-63.190500, -17.782000],\r\n    [-63.182000, -17.782000],\r\n    [-63.182000, -17.776500],\r\n    [-63.190500, -17.776500],\r\n    [-63.190500, -17.782000]\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/secciones/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"secciones",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 2",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Distrito Norte\",\r\n  \"descripcion\": \"Zona urbana norte\",\r\n  \"poligono\": [\r\n    [ -63.181, -17.783 ],\r\n    [ -63.179, -17.785 ],\r\n    [ -63.180, -17.788 ],\r\n    [ -63.183, -17.786 ]\r\n  ]\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/secciones/1/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"secciones",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 3",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/secciones/1/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"secciones",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "candidatura",
+					"item": [
+						{
+							"name": "New Request",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n//\"role\": \"JURADO\" //o ELECCION, PADRON, SUPER\r\n//NO REQUIERE USUARIO"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/candidatura/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"candidatura",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "nombre",
+											"value": "Juan Perez",
+											"type": "text"
+										},
+										{
+											"key": "ci",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "foto",
+											"type": "file",
+											"src": "/C:/Users/Indigo/Pictures/director1.JPG"
+										},
+										{
+											"key": "partido",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "cargo",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "secciones",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/candidatura/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"candidatura",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 2",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Distrito Norte\",\r\n  \"descripcion\": \"Zona urbana norte\",\r\n  \"poligono\": [\r\n    [ -63.181, -17.783 ],\r\n    [ -63.179, -17.785 ],\r\n    [ -63.180, -17.788 ],\r\n    [ -63.183, -17.786 ]\r\n  ]\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/candidatura/1/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"candidatura",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 3",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/candidatura/1/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"candidatura",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "mesas",
+					"item": [
+						{
+							"name": "New Request",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n//\"role\": \"JURADO\" //o ELECCION, PADRON, SUPER\r\n//NO REQUIERE USUARIO"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/mesas/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"mesas",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numero\": 1,\r\n  \"recinto\": 3\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/mesas/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"mesas",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 2",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"recinto\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/mesas/1/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"mesas",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 3",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/mesas/2/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"mesas",
+										"2",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Elecciones",
+					"item": [
+						{
+							"name": "New Request",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n//\"role\": \"JURADO\" //o ELECCION, PADRON, SUPER\r\n//NO REQUIERE USUARIO"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/elecciones/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"elecciones",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numero\": 1,\r\n  \"recinto\": 3\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/mesas/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"mesas",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 2",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Distrito Norte\",\r\n  \"descripcion\": \"Zona urbana norte\",\r\n  \"poligono\": [\r\n    [ -63.181, -17.783 ],\r\n    [ -63.179, -17.785 ],\r\n    [ -63.180, -17.788 ],\r\n    [ -63.183, -17.786 ]\r\n  ]\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/mesas/1/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"mesas",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 3",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/mesas/1/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"mesas",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "logica",
+					"item": [
+						{
+							"name": "generar papeletas por eleccion",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n//s"
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/papeletas/?eleccion=1&seccion=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"papeletas",
+										""
+									],
+									"query": [
+										{
+											"key": "eleccion",
+											"value": "1"
+										},
+										{
+											"key": "seccion",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Participantes de las elecciones",
+					"item": [
+						{
+							"name": "Lista DeParticipantes",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "// DE TODOS SUS DATOS POR ID DE USUARIO UUID",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/participaciones/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"participaciones",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lista DeParticipantes por ELECCION",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "// TRAE TODOS LOS DATOS DE LOS PARTICIPANTES DEL SIS2 POR EL ID DE LA ELECCION\r\n// ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/participaciones/?eleccion=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"participaciones",
+										""
+									],
+									"query": [
+										{
+											"key": "eleccion",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "crearListUsuarios/JuradosMesaEnSis4",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// ES AUTOMATICO, VA A LA TABLA DE PARTICIPANTES Y SELECCIONA PARTICIPANTES\r\n// PARA SER JURADO Y CREARLES CUENTAS HACIENDO UN POST INTERNAMENTE AL SIS4",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/jurados/orquestar-jurados/?eleccion=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"jurados",
+										"orquestar-jurados",
+										""
+									],
+									"query": [
+										{
+											"key": "eleccion",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lista de Jurados/Mesa",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// ES AUTOMATICO, VA A LA TABLA DE PARTICIPANTES Y SELECCIONA PARTICIPANTES\r\n// PARA SER JURADO Y CREARLES CUENTAS HACIENDO UN POST INTERNAMENTE AL SIS4",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/jurados/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"jurados",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Lista de Jurados/Mesa x Eleccion",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// ES AUTOMATICO, VA A LA TABLA DE PARTICIPANTES Y SELECCIONA PARTICIPANTES\r\n// PARA SER JURADO Y CREARLES CUENTAS HACIENDO UN POST INTERNAMENTE AL SIS4",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/jurados/?eleccion=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"jurados",
+										""
+									],
+									"query": [
+										{
+											"key": "eleccion",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "vaciar JuradoMesaPorEleccion",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "//AQUI SE ELIMINA TODOS LOS JURADOS DE POR ELECCION\r\n// OJO QUE TAMBIEN DEBES CONSIDERAR BORRARLOS DE LA TABLA DE USUARIOS\r\n// EN EL SISTEMA 4, AUNQUE NO AFECTARIA EN NADA, SOLO SE CREARIAN MAS CUENTAS",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/jurados/clear-by-election/?eleccion=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"jurados",
+										"clear-by-election",
+										""
+									],
+									"query": [
+										{
+											"key": "eleccion",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "eliminar participante",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwNjE2NTc3LCJpYXQiOjE3NTA2MTI5NzcsImp0aSI6IjI2Y2UzNGE3ZDEyMDRmNzlhYzcyZTkwOWJkZTJhYzczIiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.HSFcGrMZCLEWnYXANm_2A3acerDxT5iCoflKBbtQtYE>",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "// GENERALMENTE NO USAR ESTE ENDPOINT AQUI \r\n// ESTO ES AUTOMATICO PARA CUANDO EL\r\n// SISTEMA 1 BORRE A UN VOTANTE TAMBIEN SE\r\n// EN EL SISTEMA 2",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8002/system2/api/admin/participaciones/dfd42149-c6fc-4c67-a6b2-26d72823f1d9",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8002",
+									"path": [
+										"system2",
+										"api",
+										"admin",
+										"participaciones",
+										"dfd42149-c6fc-4c67-a6b2-26d72823f1d9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyMjQyNjU3LCJpYXQiOjE3NTIyMjEwNTcsImp0aSI6ImE1MGU4ZmYyMWM0MTRhMzliMzkwMmYyYTA4MWRlOGU2IiwidXNlcl9pZCI6MTAsInJvbGUiOiJFTEVDQ0lPTiJ9.xRlmiA7-ZXyjK6Y3jkIRJR2lxgTgIFSlI6SHrdYeam4",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "System1 Padron electoral",
+			"item": [
+				{
+					"name": "Votantes",
+					"item": [
+						{
+							"name": "New Request",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7265/api/Votantes",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7265",
+									"path": [
+										"api",
+										"Votantes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "CI",
+											"value": "1346748",
+											"type": "text"
+										},
+										{
+											"key": "NombreCompleto",
+											"value": "Neji Jacob",
+											"type": "text"
+										},
+										{
+											"key": "Direccion",
+											"value": "Konoha",
+											"type": "text"
+										},
+										{
+											"key": "RecintoId",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "FotoCIanverso",
+											"type": "file",
+											"src": "/C:/Users/Indigo/Downloads/397-3971107_transparent-cute-penguin-clipart-club-penguin-penguin-side.png"
+										},
+										{
+											"key": "FotoCIreverso",
+											"type": "file",
+											"src": "/C:/Users/Indigo/Downloads/397-3971107_transparent-cute-penguin-clipart-club-penguin-penguin-side - copia.png"
+										},
+										{
+											"key": "FotoVotante",
+											"type": "file",
+											"src": "/C:/Users/Indigo/Downloads/134-1349605_horse-hooves-cu-ig-club-penguin-png-clipart.png"
+										},
+										{
+											"key": "Lat",
+											"value": "-17.779802",
+											"type": "text"
+										},
+										{
+											"key": "Lng",
+											"value": "-63.185510",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://localhost:7265/api/Votantes",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7265",
+									"path": [
+										"api",
+										"Votantes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 2",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "CI",
+											"value": "1346733",
+											"type": "text"
+										},
+										{
+											"key": "NombreCompleto",
+											"value": "Neji Hiuga",
+											"type": "text"
+										},
+										{
+											"key": "Direccion",
+											"value": "Konoha",
+											"type": "text"
+										},
+										{
+											"key": "FotoCIanverso",
+											"type": "file",
+											"src": "/C:/Users/Indigo/Downloads/397-3971107_transparent-cute-penguin-clipart-club-penguin-penguin-side.png"
+										},
+										{
+											"key": "FotoCIreverso",
+											"type": "file",
+											"src": "/C:/Users/Indigo/Downloads/397-3971107_transparent-cute-penguin-clipart-club-penguin-penguin-side - copia.png"
+										},
+										{
+											"key": "FotoVotante",
+											"type": "file",
+											"src": "/C:/Users/Indigo/Downloads/134-1349605_horse-hooves-cu-ig-club-penguin-png-clipart.png"
+										},
+										{
+											"key": "Lat",
+											"value": "-17.779802",
+											"type": "text"
+										},
+										{
+											"key": "Lng",
+											"value": "-63.185510",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://localhost:7265/api/Votantes/816d16a0-b68a-4241-a8e0-5c5bc0262bc1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7265",
+									"path": [
+										"api",
+										"Votantes",
+										"816d16a0-b68a-4241-a8e0-5c5bc0262bc1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 2",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "CI",
+											"value": "15716363",
+											"type": "text"
+										},
+										{
+											"key": "NombreCompleto",
+											"value": "Mateo Quinteros editado",
+											"type": "text"
+										},
+										{
+											"key": "Direccion",
+											"value": "mi DIreccion",
+											"type": "text"
+										},
+										{
+											"key": "RecintoId",
+											"value": "2",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "FotoCIanverso",
+											"type": "file",
+											"src": "/C:/Users/Indigo/Downloads/397-3971107_transparent-cute-penguin-clipart-club-penguin-penguin-side.png"
+										},
+										{
+											"key": "FotoCIreverso",
+											"type": "file",
+											"src": "/C:/Users/Indigo/Downloads/397-3971107_transparent-cute-penguin-clipart-club-penguin-penguin-side - copia.png"
+										},
+										{
+											"key": "FotoVotante",
+											"type": "file",
+											"src": "/C:/Users/Indigo/Downloads/134-1349605_horse-hooves-cu-ig-club-penguin-png-clipart.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://localhost:7265/api/Votantes/5f4f0c79-1b39-4bfd-8e58-d2272149c0cc",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7265",
+									"path": [
+										"api",
+										"Votantes",
+										"5f4f0c79-1b39-4bfd-8e58-d2272149c0cc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request Copy 3",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "CI",
+											"value": "15716363",
+											"type": "text"
+										},
+										{
+											"key": "NombreCompleto",
+											"value": "Mateo Quinteros",
+											"type": "text"
+										},
+										{
+											"key": "Direccion",
+											"value": "mi DIreccion",
+											"type": "text"
+										},
+										{
+											"key": "RecintoId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "FotoCIanverso",
+											"type": "file",
+											"src": "/C:/Users/Indigo/Downloads/397-3971107_transparent-cute-penguin-clipart-club-penguin-penguin-side.png"
+										},
+										{
+											"key": "FotoCIreverso",
+											"type": "file",
+											"src": "/C:/Users/Indigo/Downloads/397-3971107_transparent-cute-penguin-clipart-club-penguin-penguin-side - copia.png"
+										},
+										{
+											"key": "FotoVotante",
+											"type": "file",
+											"src": "/C:/Users/Indigo/Downloads/134-1349605_horse-hooves-cu-ig-club-penguin-png-clipart.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://localhost:7265/api/Votantes/5a08ec05-a8f1-4eb1-a617-26a06fc3cded",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7265",
+									"path": [
+										"api",
+										"Votantes",
+										"5a08ec05-a8f1-4eb1-a617-26a06fc3cded"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "free Datos de votante con CI",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7265/api/Votantes/publico/1346727",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7265",
+									"path": [
+										"api",
+										"Votantes",
+										"publico",
+										"1346727"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyMjIwODI2LCJpYXQiOjE3NTIxOTkyMjYsImp0aSI6ImY2YjFkZDRiMjg4MjQ2M2RiNDc5NGU2YTQxNWI4Y2EwIiwidXNlcl9pZCI6MTIsInJvbGUiOiJQQURST04ifQ.CiRtj6iemnA5e-3QNl-AjQO9aEilpRzEv9mGBdWyRCQ",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "System3 Votacion",
+			"item": [
+				{
+					"name": "Votos",
+					"item": [
+						{
+							"name": "CRUD",
+							"item": [
+								{
+									"name": "votos emitidos",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://127.0.0.1:8003/system3/api/admin/voto/",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8003",
+											"path": [
+												"system3",
+												"api",
+												"admin",
+												"voto",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "votaaar",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"papeleta\": \"f38ea3d3-ce9c-4d3c-9cce-e5da52629d99\",\r\n  \"candidatura_id\": 4\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8003/system3/api/admin/voto/votar/",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8003",
+											"path": [
+												"system3",
+												"api",
+												"admin",
+												"voto",
+												"votar",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Public Resultados eleccion",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8003/system3/api/admin/voto/resultados/?eleccion=1&seccion=1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8003",
+									"path": [
+										"system3",
+										"api",
+										"admin",
+										"voto",
+										"resultados",
+										""
+									],
+									"query": [
+										{
+											"key": "eleccion",
+											"value": "1"
+										},
+										{
+											"key": "seccion",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Papeletas",
+					"item": [
+						{
+							"name": "CRUD",
+							"item": [
+								{
+									"name": "list votantesHabilitados",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://127.0.0.1:8003/system3/api/admin/papeleta/",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8003",
+											"path": [
+												"system3",
+												"api",
+												"admin",
+												"papeleta",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "des-habilitar xd",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"papeleta\": \"\",\r\n    \"candidatura_id\": \"\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8003/system3/api/admin/papeleta/6cee3c3f-0192-4582-8a75-59be0004f6ed/",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8003",
+											"path": [
+												"system3",
+												"api",
+												"admin",
+												"papeleta",
+												"6cee3c3f-0192-4582-8a75-59be0004f6ed",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "test token",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8003/system3/api/admin/papeleta/autentificar/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8003",
+									"path": [
+										"system3",
+										"api",
+										"admin",
+										"papeleta",
+										"autentificar",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "jurado habilita papeleta",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// PARA ESTO IDEALMENTE EN EL FRONTEND SE DEBE DE TENER UN LISTADO DE VOTANTES/PARTICIPANTES HABILITADOS PARA NUESTRA MESA.\r\n\r\n{\r\n  \"votante_id\": \"d40b5c38-f593-4ce2-8511-8d55c617638d\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8003/system3/api/admin/papeleta/habilitar/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8003",
+									"path": [
+										"system3",
+										"api",
+										"admin",
+										"papeleta",
+										"habilitar",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "jurado status chamba",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyMjQzMTg0LCJpYXQiOjE3NTIyMjE1ODQsImp0aSI6IjI4NDM1YjRjMjM5YTRjNGU4ZmMxZDkyNzViMGUyMDE2IiwidXNlcl9pZCI6MjksInJvbGUiOiJKVVJBRE8ifQ.kGcUSqLAWiH0NMO4tKdZsVyxQ-qB2nQq0zrVTEvQliY",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8003/system3/api/admin/papeleta/jurado-estado/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8003",
+									"path": [
+										"system3",
+										"api",
+										"admin",
+										"papeleta",
+										"jurado-estado",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "public miMesa esta habilitada?",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8003/system3/api/admin/papeleta/estado/?votante_id=79c72fc0-f958-410d-b616-204df6e2b36f&mesa_id=3",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8003",
+									"path": [
+										"system3",
+										"api",
+										"admin",
+										"papeleta",
+										"estado",
+										""
+									],
+									"query": [
+										{
+											"key": "votante_id",
+											"value": "79c72fc0-f958-410d-b616-204df6e2b36f"
+										},
+										{
+											"key": "mesa_id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "validador manual, buscar Vot x CI",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "//literal ES EL MISMO QUE USAMOS EN FREE DATOS DE VOTANTE CON CI EN EL SISTEMA 1 xddddd\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8003/system3/api/admin/papeleta/buscar/?ci=1346732",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8003",
+									"path": [
+										"system3",
+										"api",
+										"admin",
+										"papeleta",
+										"buscar",
+										""
+									],
+									"query": [
+										{
+											"key": "ci",
+											"value": "1346732"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyMjM5Njg3LCJpYXQiOjE3NTIyMTgwODcsImp0aSI6ImU4M2E2NjA4NmVhZjQyNTliYWMzYWEzNWYzNmViOWNjIiwidXNlcl9pZCI6MjcsInJvbGUiOiJKVVJBRE8ifQ.QBXRfgC14XGyXHXsEoDz5-ybrm6pz-Vr9tTkuVr1qi0",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMjcxNzM4LCJpYXQiOjE3NTAyNjgxMzgsImp0aSI6ImIwMGFmNWE1NzYwYjQ1YjE5NDI2ZTIwMzg0NjgxZWVkIiwidXNlcl9pZCI6MX0.IOJ8aRdHFKq8PV2DUYLZOdEtweec50LOmoehb4VXZNc",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
