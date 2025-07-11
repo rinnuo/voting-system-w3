@@ -20,17 +20,21 @@ class JuradoMesaSerializer(serializers.ModelSerializer):
 class JuradoMesaViewSet(viewsets.ModelViewSet):
     queryset = JuradoMesa.objects.all()
     serializer_class = JuradoMesaSerializer
+    filterset_fields = ['user4_id']
 
     def get_permissions(self):
         if self.request.method in ['GET', 'HEAD', 'OPTIONS']:
             return [AllowAny()]
         return [IsEleccionUser()]
 
-    def get_queryset(self): #con esto filtramos los jurados por la elección
+    def get_queryset(self):
         qs = JuradoMesa.objects.select_related('mesa__eleccion')
         ele = self.request.query_params.get('eleccion')
+        user4 = self.request.query_params.get('user4_id')
         if ele:
             qs = qs.filter(mesa__eleccion__id=ele)
+        if user4:
+            qs = qs.filter(user4_id=user4)
         return qs
 
     @action(detail=False, methods=['post'], url_path='orquestar-jurados')

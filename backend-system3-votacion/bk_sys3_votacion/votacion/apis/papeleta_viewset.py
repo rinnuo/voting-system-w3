@@ -52,6 +52,7 @@ class PapeletaViewSet(JuradoBaseViewSet):
     @permission_classes([IsJuradoUser])
     def jurado_estado(self, request):
         user4_id = request.user.id
+        print(f"[DEBUG] Usuario autenticado como: {request.user.id}")
 
         # 1. Obtener mesa y elección del jurado desde SIS2
         jurado_url = "http://127.0.0.1:8002/system2/api/admin/jurados/"
@@ -171,7 +172,7 @@ class PapeletaViewSet(JuradoBaseViewSet):
 
 
     @action(detail=False, methods=['get'], url_path='buscar')
-    def buscar(self, request):
+    def buscar(self, request): #
         ci = request.query_params.get('ci')
         if not ci:
             return Response({"detail": "?ci es requerido"}, status=400)
