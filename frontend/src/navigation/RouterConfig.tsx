@@ -8,6 +8,8 @@ import UserList from "../pages/super/UserList";
 import UserForm from "../pages/super/UserForm";
 import VotanteList from "../pages/padron/VotanteList";
 import VotanteForm from "../pages/padron/VotanteForm";
+import SeccionList from "../pages/eleccion/SeccionList";
+import SeccionForm from "../pages/eleccion/SeccionForm";
 import RecintoList from "../pages/eleccion/RecintoList";
 import RecintoForm from "../pages/eleccion/RecintoForm";
 import PageNotFound from "../pages/PageNotFound";
@@ -26,6 +28,10 @@ const RouterConfig = () => (
       <Route path={URLS.VOTANTES.LIST} element={<RoleRoute allowedRoles={["PADRON"]}><VotanteList /></RoleRoute>} />
       <Route path={URLS.VOTANTES.CREATE} element={<RoleRoute allowedRoles={["PADRON"]}><VotanteForm /></RoleRoute>} />
       <Route path={URLS.VOTANTES.EDIT} element={<RoleRoute allowedRoles={["PADRON"]}><VotanteForm /></RoleRoute>} />
+
+      <Route path={URLS.SECCIONES.LIST} element={<RoleRoute allowedRoles={["ELECCION"]}><SeccionList /></RoleRoute>} />
+      <Route path={URLS.SECCIONES.CREATE} element={<RoleRoute allowedRoles={["ELECCION"]}><SeccionForm /></RoleRoute>} />
+      <Route path={URLS.SECCIONES.EDIT} element={<RoleRoute allowedRoles={["ELECCION"]}><SeccionForm /></RoleRoute>} />
 
       <Route path={URLS.RECINTOS.LIST} element={<RoleRoute allowedRoles={["ELECCION"]}><RecintoList /></RoleRoute>} />
       <Route path={URLS.RECINTOS.CREATE} element={<RoleRoute allowedRoles={["ELECCION"]}><RecintoForm /></RoleRoute>} />

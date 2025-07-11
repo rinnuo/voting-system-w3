@@ -42,7 +42,7 @@ const LoginForm = () => {
           navigate(URLS.USERS.LIST);
           break;
         case "PADRON":
-          navigate(URLS.HOME);
+          navigate(URLS.VOTANTES.LIST);
           break;
         case "ELECCION":
           navigate(URLS.RECINTOS.LIST);

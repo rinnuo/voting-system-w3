@@ -39,14 +39,24 @@ const NavBar = () => {
                 </Dropdown>
               )}
               {user?.role === 'ELECCION' && (
-                <Dropdown label="Recintos">
-                  <Link to={URLS.RECINTOS.LIST} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
-                    Lista de Recintos
-                  </Link>
-                  <Link to={URLS.RECINTOS.CREATE} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
-                    Crear Recinto
-                  </Link>
-                </Dropdown>
+                <>
+                  <Dropdown label="Secciones">
+                    <Link to={URLS.SECCIONES.LIST} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
+                      Lista de Secciones
+                    </Link>
+                    <Link to={URLS.SECCIONES.CREATE} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
+                      Crear Seccion
+                    </Link>
+                  </Dropdown>
+                  <Dropdown label="Recintos">
+                    <Link to={URLS.RECINTOS.LIST} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
+                      Lista de Recintos
+                    </Link>
+                    <Link to={URLS.RECINTOS.CREATE} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
+                      Crear Recinto
+                    </Link>
+                  </Dropdown>
+                </>
               )}
               {user?.role === 'PADRON' && (
                 <Dropdown label="Votantes">
