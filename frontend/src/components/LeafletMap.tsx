@@ -91,7 +91,7 @@ const LeafletMap: React.FC<LeafletMapProps> = ({
   const center = markers.length
     ? [markers[0].lat, markers[0].lng] as [number, number]
     : polygons.length
-    ? [polygons[0].poligono[0][1], polygons[0].poligono[0][0]]
+    ? getCentroid(polygons[0].poligono)
     : [-17.783, -63.18];
 
   return (
@@ -123,21 +123,12 @@ const LeafletMap: React.FC<LeafletMapProps> = ({
           >
             <Tooltip
               direction="center"
-              permanent
               position={getCentroid(p.poligono)}
             >
               {p.nombre}
             </Tooltip>
           </Polygon>
         ) : null
-      )}
-
-
-      {polygonPoints.length > 0 && (
-        <Polygon
-          positions={polygonPoints.map(([lng, lat]) => [lat, lng])}
-          pathOptions={{ color: "#60a5fa", fillOpacity: 0.3, dashArray: "5, 10" }}
-        />
       )}
 
       {markers.map((m, i) => (

@@ -11,9 +11,14 @@ export const URLS = {
         CREATE: "/votantes/create",
         EDIT: "/votantes/:id",
     },
+    SECCIONES: {
+        LIST: "/secciones/list",
+        CREATE: "/secciones/create",
+        EDIT: "/secciones/:id",
+    },
     RECINTOS: {
         LIST: "/recintos/list",
         CREATE: "/recintos/create",
         EDIT: "/recintos/:id",
-    }
+    },
 }
