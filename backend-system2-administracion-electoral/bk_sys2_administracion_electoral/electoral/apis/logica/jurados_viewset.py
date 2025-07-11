@@ -49,6 +49,8 @@ class JuradoMesaViewSet(viewsets.ModelViewSet):
         # Inicializar dict con lista vacía por cada mesa
         mesas = {m.id: [] for m in mesas_qs}
 
+        logger.info(f"Iniciando orquestación de jurados para elección {eleccion_id}, por_mesa={por_mesa}")
+
         # 2) Traer participaciones y poblar
         parts = (ParticipacionVotanteEleccion.objects
                  .filter(eleccion_id=eleccion_id)
@@ -57,6 +59,8 @@ class JuradoMesaViewSet(viewsets.ModelViewSet):
         for p in parts:
             if p.mesa_id in mesas:
                 mesas[p.mesa_id].append(p)
+
+        logger.info(f"Total mesas: {len(mesas_qs)}, Total participaciones: {parts.count()}")
 
         # ---- DEBUG aquí ----
         #logger.debug("DICT MESAS → %s", {mid: len(lst) for mid, lst in mesas.items()})
@@ -105,7 +109,7 @@ class JuradoMesaViewSet(viewsets.ModelViewSet):
                     "email": f"jurado+{base}@example.com",
                     "role": "JURADO"
                 })
-                mapping[str(p.votante_id)] = mesa_id
+                mapping[str(p.votante_id)] = p.mesa_id
 
         # 6) Llamar a bulk_create en Sistema 4
         url4 = f"http://127.0.0.1:8004/system4/api/admin/users/bulk_create/"
@@ -126,9 +130,17 @@ class JuradoMesaViewSet(viewsets.ModelViewSet):
         for r in results:
             pid, uid, usr = r['participant_id'], r['user_id'], r['username']
             ms = mapping.get(pid)
+
+            try:
+                participante = ParticipacionVotanteEleccion.objects.get(votante_id=pid, eleccion_id=eleccion_id)
+                mesa_obj = MesaElectoral.objects.get(id=ms)
+            except Exception as e:
+                logger.warning(f"Error al recuperar instancia: {e}")
+                continue
+
             jm, created = JuradoMesa.objects.update_or_create(
-                participante_id=pid,
-                mesa_id=ms,
+                participante_id=participante,
+                mesa=mesa_obj,
                 defaults={"user4_id": uid, "username": usr}
             )
             output.append({
@@ -140,7 +152,13 @@ class JuradoMesaViewSet(viewsets.ModelViewSet):
                 "created": created
             })
 
-        return Response(output, status=status.HTTP_201_CREATED)
+        logger.info(f"Jurados creados/asignados: {len(output)}")
+
+        return Response({
+            "created": sum(1 for x in output if x['created']),
+            "updated": sum(1 for x in output if not x['created']),
+            "jurados": output
+        }, status=status.HTTP_201_CREATED)
 
 
     @action(detail=False, methods=['delete'], url_path='clear-by-election')

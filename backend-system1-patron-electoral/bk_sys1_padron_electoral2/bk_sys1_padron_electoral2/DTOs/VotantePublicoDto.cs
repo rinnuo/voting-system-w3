@@ -2,6 +2,7 @@
 {
     public class VotantePublicoDto
     {
+        public Guid Id { get; set; }
         public string CI { get; set; }
         public string NombreCompleto { get; set; }
         public int RecintoId { get; set; }

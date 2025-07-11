@@ -249,6 +249,7 @@ namespace bk_sys1_padron_electoral2.Controllers
             // 4) Armar DTO de salida
             var salida = new VotantePublicoDto
             {
+                Id = votante.Id,
                 CI = votante.CI,
                 NombreCompleto = votante.NombreCompleto,
                 RecintoId = partDto.RecintoId,
