@@ -17,11 +17,15 @@ const NavBar = () => {
   return (
     <nav className="bg-gray-800 p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-white text-lg font-bold">
+        <Link to={URLS.HOME} className="text-white text-lg font-bold">
           Voting System
         </Link>
+        
 
         <div className="space-x-4 flex items-center">
+          <Link to={URLS.RESULTADOS} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
+            Resultados
+          </Link>
           {!token ? (
             <Button as={Link} to={URLS.LOGIN} variant="primary">
               Login
@@ -108,13 +112,20 @@ const NavBar = () => {
                   </Link>
                 </Dropdown>
               )}
-              {user?.role === 'VOTACION' && (
-                <Link
-                  to={URLS.HOME}
-                  className="px-4 py-2 rounded bg-gray-700 text-gray-200 hover:bg-gray-600 transition"
-                >
-                  VOTACION (placeholder)
-                </Link>
+              {user?.role === 'JURADO' && (
+                <>
+                  <Dropdown label="Votos">
+                    <Link to={URLS.VOTOS.LIST} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
+                      Lista de Votos
+                    </Link>
+                    <Link to={URLS.VOTOS.LIST} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
+                      Votar
+                    </Link>
+                  </Dropdown>
+                  <Link to={URLS.PAPELETAS.LIST} className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded">
+                    Lista de Papeletas
+                  </Link>
+                </>
               )}
               <Button onClick={handleLogout} variant="danger">
                 Logout

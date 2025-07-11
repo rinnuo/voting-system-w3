@@ -60,6 +60,17 @@ const CargoForm = () => {
     }
   }, [id]);
 
+  useEffect(() => {
+  if (elecciones.length > 0 && secciones.length > 0 && !id) {
+    setForm((prev) => ({
+      ...prev,
+      eleccion: elecciones[0].id,
+      secciones: [],
+    }));
+  }
+}, [elecciones, secciones, id]);
+
+
   const handleChange = (updated: Partial<Cargo>) => {
     setForm((prev) => ({ ...prev, ...updated }));
   };

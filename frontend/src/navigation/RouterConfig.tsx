@@ -23,6 +23,9 @@ import MesaList from "../pages/eleccion/MesaList";
 import MesaForm from "../pages/eleccion/MesaForm";
 import PartidoList from "../pages/eleccion/PartidoList";
 import PartidoForm from "../pages/eleccion/PartidoForm";
+import PapeletaList from "../pages/votacion/PapeletaList";
+import VotoList from "../pages/votacion/VotoList";
+import ResultadosPublicos from "../pages/votacion/ResultadosPublicos";
 import PageNotFound from "../pages/PageNotFound";
 
 const RouterConfig = () => (
@@ -30,6 +33,7 @@ const RouterConfig = () => (
     <NavBar />
     <Routes>
       <Route path={URLS.HOME} element={<HomePage />} />
+      <Route path={URLS.RESULTADOS} element={<ResultadosPublicos />} />
       <Route path={URLS.LOGIN} element={<LoginForm />} />
 
       <Route path={URLS.USERS.LIST} element={<RoleRoute allowedRoles={["SUPER"]}><UserList /></RoleRoute>} />
@@ -58,7 +62,7 @@ const RouterConfig = () => (
 
       <Route path={URLS.ELECCIONES.LIST} element={<RoleRoute allowedRoles={["ELECCION"]}><EleccionList /></RoleRoute>} />
       <Route path={URLS.ELECCIONES.CREATE} element={<RoleRoute allowedRoles={["ELECCION"]}><EleccionForm /></RoleRoute>} />
-      <Route path={URLS.ELECCIONES.EDIT} element={<RoleRoute allowedRoles={["ELECCION"]}><ParticipacionesPorEleccion /></RoleRoute>} />
+      <Route path={URLS.ELECCIONES.EDIT} element={<RoleRoute allowedRoles={["ELECCION"]}><EleccionForm /></RoleRoute>} />
       <Route path={URLS.ELECCIONES.PARTICIPACIONES} element={<RoleRoute allowedRoles={["ELECCION"]}><ParticipacionesPorEleccion /></RoleRoute>} />
 
       <Route path={URLS.MESAS.LIST} element={<RoleRoute allowedRoles={["ELECCION"]}><MesaList /></RoleRoute>} />
@@ -68,6 +72,10 @@ const RouterConfig = () => (
       <Route path={URLS.PARTIDOS.LIST} element={<RoleRoute allowedRoles={["ELECCION"]}><PartidoList /></RoleRoute>} />
       <Route path={URLS.PARTIDOS.CREATE} element={<RoleRoute allowedRoles={["ELECCION"]}><PartidoForm /></RoleRoute>} />
       <Route path={URLS.PARTIDOS.EDIT} element={<RoleRoute allowedRoles={["ELECCION"]}><PartidoForm /></RoleRoute>} />
+
+      <Route path={URLS.PAPELETAS.LIST} element={<RoleRoute allowedRoles={["JURADO"]}><PapeletaList /></RoleRoute>} />
+
+      <Route path={URLS.VOTOS.LIST} element={<RoleRoute allowedRoles={["JURADO"]}><VotoList /></RoleRoute>} />
       
       <Route path="*" element={<PageNotFound/>} />
     </Routes>

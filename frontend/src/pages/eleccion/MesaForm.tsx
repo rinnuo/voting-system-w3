@@ -58,6 +58,17 @@ const MesaForm = () => {
     }
   }, [id]);
 
+  useEffect(() => {
+    if (elecciones.length > 0 && recintos.length > 0 && !id) {
+      setForm({
+        numero: 0,
+        eleccion: elecciones[0].id,
+        recinto: recintos[0].id,
+      });
+    }
+  }, [elecciones, recintos, id]);
+
+
   const handleChange = (updated: Partial<Mesa>) => {
     setForm((prev) => ({ ...prev, ...updated }));
   };

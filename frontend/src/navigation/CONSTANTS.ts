@@ -47,4 +47,11 @@ export const URLS = {
         CREATE: "/partidos/create",
         EDIT: "/partidos/:id",
     },
+    PAPELETAS: {
+        LIST: "/papeletas/list",
+    },
+    VOTOS: {
+        LIST: "/votos/list",
+    },
+    RESULTADOS: "/resultados",
 }

@@ -181,12 +181,13 @@ export class EleccionService {
 
   static async createCandidatura(data: Omit<Candidatura, "id">): Promise<Candidatura> {
     const formData = new FormData();
-    formData.append("nombres", data.nombres);
-    formData.append("ci", data.ci);
-    if (data.foto) formData.append("foto", data.foto); // Only append if present
-    formData.append("partido", data.partido.toString());
-    formData.append("cargo", data.cargo.toString());
-    data.secciones.forEach(id => formData.append("secciones", id.toString()));
+    Object.entries(data).forEach(([key, value]) => {
+      if (key === "secciones" && Array.isArray(value)) {
+        value.forEach((s) => formData.append("secciones", s.toString()));
+      } else if (value !== null && value !== undefined) {
+        formData.append(key, value as any);
+      }
+    });
 
     const res = await eleccionApi.post<Candidatura>("admin/candidatura/", formData, {
       headers: { "Content-Type": "multipart/form-data" },
@@ -196,13 +197,13 @@ export class EleccionService {
 
   static async updateCandidatura(id: number, data: Partial<Omit<Candidatura, "id">>): Promise<Candidatura> {
     const formData = new FormData();
-    if (data.nombres) formData.append("nombres", data.nombres);
-    if (data.ci) formData.append("ci", data.ci);
-    if (data.foto) formData.append("foto", data.foto);
-    if (data.partido !== undefined) formData.append("partido", data.partido.toString());
-    if (data.cargo !== undefined) formData.append("cargo", data.cargo.toString());
-    if (data.secciones)
-      data.secciones.forEach(id => formData.append("secciones", id.toString()));
+    Object.entries(data).forEach(([key, value]) => {
+      if (key === "secciones" && Array.isArray(value)) {
+        value.forEach((s) => formData.append("secciones", s.toString()));
+      } else if (value !== null && value !== undefined) {
+        formData.append(key, value as any);
+      }
+    });
 
     const res = await eleccionApi.patch<Candidatura>(`admin/candidatura/${id}/`, formData, {
       headers: { "Content-Type": "multipart/form-data" },

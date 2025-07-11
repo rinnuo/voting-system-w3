@@ -4,7 +4,7 @@ import Button from "./Button";
 export interface ListField<T> {
   label: string;
   name: keyof T & string;
-  type?: "text" | "number" | "textarea" | "file" | "select" | "multiselect" | "color";
+  type?: "text" | "number" | "textarea" | "file" | "select" | "multiselect" | "color" | "date";
   options?: { label: string; value: string | number }[];
   required?: boolean;
   className?: string;
@@ -99,6 +99,22 @@ function Form<T>({
                 {(values[field.name] as string) || "#000000"}
               </span>
             </div>
+          ) : field.type === "date" ? (
+            <input
+              name={field.name}
+              type="date"
+              value={
+                values[field.name] instanceof Date
+                  ? (values[field.name] as Date).toISOString().split("T")[0]
+                  : (values[field.name] as string || "")
+              }
+              onChange={(e) => {
+                const { name, value } = e.target;
+                onChange({ [name]: new Date(value) } as Partial<T>);
+              }}
+              required={field.required}
+              className={`mt-1 w-full rounded border border-gray-700 bg-gray-900 text-gray-100 px-3 py-2 ${field.className || ""}`}
+            />
           ) : field.type === "textarea" ? (
             <textarea
               name={field.name}
